@@ -1,8 +1,18 @@
 import Vue from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify';
+import axios from 'axios';
+import moment from 'moment'
+
+Vue.prototype.$axios = axios;
 
 Vue.config.productionTip = false
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY hh:mm')
+  }
+});
 
 export const eventBus = new Vue({
   data: {

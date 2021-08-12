@@ -44,7 +44,7 @@ export default {
     eventBus.$on('update:page', (page) => {
       this.page = page;
     })
-  }
+  },
 }
 </script>
 
