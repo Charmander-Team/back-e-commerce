@@ -53,4 +53,9 @@ export default {
   min-height: 100vh;
   background-color: #95afc0;
 }
+/* @media screen and (max-width: 630px){
+  .background-app{
+    
+  }
+} */
 </style>

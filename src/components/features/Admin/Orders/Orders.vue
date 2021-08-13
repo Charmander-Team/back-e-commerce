@@ -1,17 +1,24 @@
 <template>
-  <div class="adminOrders">
-    <h1>All Orders</h1>
-    <v-expansion-panels class="ordersContainer">
+  <div class="ordersWrapper">
+    <div class="ordersContainer">
+      <h1>All Orders</h1>
+    <v-expansion-panels focusable popout>
       <v-expansion-panel
         v-for="order in orders" :key="order.id" class="order"
       >
         <v-expansion-panel-header class="d-flex justify-space-around">
-          <span>Order {{order.id}}</span> 
-          <div v-if="order.paid">
-            <v-chip color="green">Paid</v-chip>
+          <p class="text-h6 mr-5 mb-0">Order {{order.id}}</p> 
+          <div v-if="order.paid" class="d-flex justify-start align-center">
+            <p class="text-subtitle-1 mr-5 mb-0">Paid</p>
+            <v-icon color="teal">
+              mdi-check
+            </v-icon>
           </div>
-          <div v-else>
-            <v-chip color="red">Not Paid</v-chip>
+          <div v-else class="d-flex justify-start align-center">
+            <p class="text-subtitle-1 mr-5 mb-0">Not Paid</p>
+            <v-icon color="error">
+              mdi-alert-circle
+            </v-icon>
           </div>
         </v-expansion-panel-header>
         
@@ -26,6 +33,8 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
+    </div>
+    
   </div>
 </template>
 
@@ -52,12 +61,16 @@ mounted(){
 
 <style>
 .ordersContainer{
-  max-width: 70% !important;
+  width: 80%;
+  padding: 2vh 20px;
+  margin: 10vh 20px 5vh 0;
+  background-color: #ffd32a;
+  border-radius: 10px;
 }
-.adminOrders{
+.ordersWrapper{
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
-  flex-direction: column;
+  max-width: 100%;
 }
 </style>
