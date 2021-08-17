@@ -11,41 +11,48 @@
      <input v-model="form.nom" type="text" class="form-control">
    </div>
    <div class="form-group">
+     <label>Category Id:</label>
+     <input v-model.number="form.category_id" type="number" class="form-control" pattern="[0-5]{1}">
+   </div>
+   <div class="form-group">
      <label>Reference:</label>
      <input v-model="form.ref" type="text" class="form-control">
    </div>
    <div class="form-group">
-     <label>Type:</label>
+     <label>Energy Type:</label>
      <input v-model="form.type" type="text" class="form-control">
    </div>
    <div class="form-group">
-     <label>Level:</label>
-     <input v-model.number="form.niveau" type="number" class="form-control">
+     <label>Description:</label>
+     <input v-model="form.description" type="textarea" class="form-control">
+   </div>
+   <div class="form-group">
+     <label>Stock:</label>
+     <input v-model.number="form.stock" type="number" class="form-control">
    </div>
    <div class="form-group">
      <label>Price:</label>
      <input v-model.number="form.prix" type="number" class="form-control">
    </div>
-   <h3 class="mt-3">Devise</h3>
-   <hr class="w-100">
-   <div class="form-group d-flex justify-content-center">
-    <div class="form-check form-check-inline">
-      <input v-model="form.devise" class="form-check-input" type="radio" name="devise" id="dollars" value="$">
-      <label class="form-check-label" for="dollars">$</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input v-model="form.devise" class="form-check-input" type="radio" name="devise" id="euros" value="€">
-      <label class="form-check-label" for="euros">€</label>
-    </div>
+   <!-- <div class="form-group">
+     <label>Date:</label>
+     <input v-model.number="form.date" type="number" class="form-control">
+   </div> -->
+   <div class="form-group">
+     <label>Bid:</label>
+     <input v-model.number="form.bid" type="number" class="form-control" pattern="[0-1]{1}">
    </div>
    <ul v-if="errors.length">
      <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
    </ul>
-  <v-btn @click="trySubmit" large color="yellow" elevation="4">Ajouter</v-btn>
+  <v-btn @click="submitForm" large color="yellow" elevation="4">Ajouter</v-btn>
  </form>
 </template>
 
 <script>
+import Vue from 'vue';
+import axios from 'axios';
+Vue.prototype.$axios = axios;
 import { eventBus } from '../../../main';
 
 export default {
@@ -54,18 +61,56 @@ export default {
       form: {
         img: '',
         nom: '',
+        category_id: '',
         ref: '',
         type: '',
-        niveau: '',
+        description: '',
+        stock: '',
         prix: '',
-        devise: '',
-        achat: true,
-        enchere: false
+        // date: this.getNow(),
+        bid: '',
       },
       errors: []
     }
   },
   methods: {
+    submitForm(e) {
+      e.preventDefault();
+      if(this.formIsValid()){
+        // POST request using axios
+        axios.post("https://api.pokeshop.tk/api/product", {
+          image: this.form.img,
+          name: this.form.nom,
+          category_id: this.form.category_id,
+          ref: this.form.ref,
+          energy_type: this.form.type,
+          description: this.form.description,
+          stock: this.form.stock,
+          price: this.form.prix,
+          bid: this.form.bid
+        },
+        {
+          headers:{
+            "Content-Type": "application/json"
+          }
+        })
+        .then(res => {
+          console.log("Product sent", res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        this.resetForm();
+      }
+      
+    },
+    getNow() {
+      const today = new Date();
+      const date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+      const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      const dateTime = date +' '+ time;
+      this.date = dateTime;
+    },
     trySubmit(e){
       e.preventDefault();
       if(this.formIsValid()){
@@ -79,13 +124,14 @@ export default {
       this.form = {
         img: '',
         nom: '',
+        category_id: '',
         ref: '',
         type: '',
-        niveau: '',
+        description: '',
+        stock: '',
         prix: '',
-        devise: '',
-        achat: true,
-        enchere: false
+        // date: this.getNow(),
+        bid: '',
       }
     },
     formIsValid(){
@@ -96,20 +142,29 @@ export default {
       if(!this.form.nom){
         this.errors.push('Name required !');
       }
+      if(!this.form.category_id){
+        this.errors.push('Category Id required !');
+      }
       if(!this.form.ref){
         this.errors.push('Reference required !');
       }
       if(!this.form.type){
         this.errors.push('Type required !');
       }
-      if(!this.form.niveau){
-        this.errors.push('Level required !');
+      if(!this.form.description){
+        this.errors.push('Description required !');
+      }
+      if(!this.form.stock){
+        this.errors.push('Stock required !');
       }
       if(!this.form.prix){
         this.errors.push('Price required !');
       }
-      if(!this.form.devise){
-        this.errors.push('Devise required !');
+      // if(!this.form.date){
+      //   this.errors.push('Date required !');
+      // }
+      if(this.form.bid < 0 || this.form.bid > 1){
+        this.errors.push('Bid required !');
       }
       return this.errors.length ? false : true;
     }

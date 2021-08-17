@@ -52,7 +52,7 @@ data(){
 },
 mounted(){
   axios
-  .get(`http://localhost:3000/api/order/`)
+  .get(`https://api.pokeshop.tk/api/order/`)
   .then(response => (this.orders = response.data))
 },
 
@@ -60,6 +60,13 @@ mounted(){
 </script>
 
 <style>
+.ordersWrapper{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+}
 .ordersContainer{
   width: 80%;
   padding: 2vh 20px;
@@ -67,10 +74,5 @@ mounted(){
   background-color: #ffd32a;
   border-radius: 10px;
 }
-.ordersWrapper{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  max-width: 100%;
-}
+
 </style>

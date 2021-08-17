@@ -68,7 +68,6 @@ export default {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  min-height: 100vh;
   background-color: #95afc0;
 }
 .dashboardContainer{
