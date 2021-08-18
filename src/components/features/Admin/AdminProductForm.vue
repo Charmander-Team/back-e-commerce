@@ -1,51 +1,54 @@
 <template>
- <form class="d-flex flex-column formContainer">
-   <h4>Add new card</h4>
-   <hr class="w-100">
-   <div class="form-group">
-     <label>Image Url:</label>
-     <input v-model="form.img" type="text" class="form-control">
-   </div>
-   <div class="form-group">
-     <label>Name:</label>
-     <input v-model="form.nom" type="text" class="form-control">
-   </div>
-   <div class="form-group">
-     <label>Category Id:</label>
-     <input v-model.number="form.category_id" type="number" class="form-control" pattern="[0-5]{1}">
-   </div>
-   <div class="form-group">
-     <label>Reference:</label>
-     <input v-model="form.ref" type="text" class="form-control">
-   </div>
-   <div class="form-group">
-     <label>Energy Type:</label>
-     <input v-model="form.type" type="text" class="form-control">
-   </div>
-   <div class="form-group">
-     <label>Description:</label>
-     <input v-model="form.description" type="textarea" class="form-control">
-   </div>
-   <div class="form-group">
-     <label>Stock:</label>
-     <input v-model.number="form.stock" type="number" class="form-control">
-   </div>
-   <div class="form-group">
-     <label>Price:</label>
-     <input v-model.number="form.prix" type="number" class="form-control">
-   </div>
-   <!-- <div class="form-group">
-     <label>Date:</label>
-     <input v-model.number="form.date" type="number" class="form-control">
-   </div> -->
-   <div class="form-group">
-     <label>Bid:</label>
-     <input v-model.number="form.bid" type="number" class="form-control" pattern="[0-1]{1}">
-   </div>
-   <ul v-if="errors.length">
-     <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
-   </ul>
-  <v-btn @click="submitForm" large color="yellow" elevation="4">Ajouter</v-btn>
+ <form class="d-flex flex-column">
+   <v-card elevation="5" class="formContainer">
+      <h4>Add new card</h4>
+    <hr class="w-100">
+    <div class="form-group">
+      <label>Image Url:</label>
+      <input v-model="form.img" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Name:</label>
+      <input v-model="form.nom" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Category Id:</label>
+      <input v-model.number="form.category_id" type="number" class="form-control" pattern="[0-5]{1}">
+    </div>
+    <div class="form-group">
+      <label>Reference:</label>
+      <input v-model="form.ref" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Energy Type:</label>
+      <input v-model="form.type" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Description:</label>
+      <input v-model="form.description" type="textarea" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Stock:</label>
+      <input v-model.number="form.stock" type="number" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Price:</label>
+      <input v-model.number="form.prix" type="number" class="form-control">
+    </div>
+    <!-- <div class="form-group">
+      <label>Date:</label>
+      <input v-model.number="form.date" type="number" class="form-control">
+    </div> -->
+    <div class="form-group">
+      <label>Bid:</label>
+      <input v-model.number="form.bid" type="number" class="form-control" pattern="[0-1]{1}">
+    </div>
+    <ul v-if="errors.length">
+      <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
+    </ul>
+    <v-btn @click="submitForm" large color="yellow" elevation="4">Ajouter</v-btn>
+   </v-card>
+   
  </form>
 </template>
 
@@ -180,9 +183,9 @@ export default {
     font-size: 1.5rem;
   }
   .formContainer{
-    padding: 50px 30px;
-    background-color: #1e90ff;
-    border-radius: 10px;
-    color: white;
+    padding: 25px 20px 20px 20px;
+    background-color: #95afc0 !important;
+    border-radius: 10px !important;
+    color: white !important;
   }
 </style>
