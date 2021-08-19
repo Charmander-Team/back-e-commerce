@@ -50,7 +50,7 @@ export default {
 
 <style>
 .background-app{
-  min-height: 100vh;
+  height: 100%;
   background-color: #95afc0;
 }
 /* @media screen and (max-width: 630px){

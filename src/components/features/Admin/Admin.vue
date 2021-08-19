@@ -2,7 +2,7 @@
   <div class="dashboardWrapper">
     <div class="dashboardContainer">
       <v-container>
-        <v-row>
+        <v-row class="rowClass">
           <v-col md="8" align-self="center">
             <v-container>
               <v-row>
@@ -31,7 +31,7 @@
               </v-row>
             </v-container>
           </v-col>
-          <v-col md="4">
+          <v-col md="4" class="colForm">
             <admin-product-form></admin-product-form>
           </v-col>
         </v-row>
@@ -66,6 +66,7 @@ export default {
 <style lang="scss">
 .dashboardWrapper{
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: flex-end;
   background-color: #95afc0;
@@ -75,9 +76,8 @@ export default {
   justify-content: flex-end;
   flex-wrap: wrap;
   width: 80%;
-  height: 80vh;
   padding: 2vh 20px;
-  margin: 10vh 20px 0 0;
+  margin: 10vh 20px 5vh 0;
   background-color: #ffd32a;
   border-radius: 10px;
 }
@@ -87,22 +87,32 @@ export default {
 .red{
   background-color: red;
   border: solid black 2px !important;
-
 }
 .yellow2{
   background-color: yellow;
   border: solid black 2px !important;
   height:100%;
-
 }
 .green{
   background-color: green;
   border: solid black 2px !important;
-
 }
 .pink{
   background-color: pink;
   border: solid black 2px !important;
+}
 
+@media screen and (max-width: 1400px) {
+  .rowClass{
+    flex-direction: column;
+  }
+  .colForm{
+    min-width: 100%;
+  }
+}
+@media screen and (max-width: 935px) {
+  .dashboardContainer{
+    width: 100%;
+  }
 }
 </style>

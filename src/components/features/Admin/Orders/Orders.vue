@@ -75,4 +75,10 @@ mounted(){
   border-radius: 10px;
 }
 
+@media screen and (max-width: 935px) {
+  .ordersContainer{
+    width: 100%;
+  }
+}
+
 </style>

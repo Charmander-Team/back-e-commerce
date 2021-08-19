@@ -14,7 +14,7 @@
 
   <v-navigation-drawer
       v-model="drawer"
-      absolute
+      fixed
       bottom
       temporary
     >
@@ -85,7 +85,6 @@ export default {
   left: 50px;
   border-radius: 10px;
   width: 256px;
-  height: 400px;
 }
 .sideMenuContMobile{
   position: sticky;
@@ -96,5 +95,11 @@ export default {
 .sideMenu{
   background-color: #ffd32a !important;
   height: 100%;
+}
+
+@media screen and (max-width: 935px) {
+  .sideMenuWrapper{
+    padding: 0;
+  }
 }
 </style>
