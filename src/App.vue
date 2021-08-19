@@ -18,7 +18,7 @@ import Analytics from './components/features/Admin/Analytics/Analytics.vue';
 import Users from './components/features/Admin/Users/Users.vue';
 import { eventBus } from './main';
 import SideMenu from './components/SideMenu.vue';
-import TheHeader from './components/TheHeader.vue';
+import AllCards from './components/features/Admin/AllCards/AllCards.vue';
 
 export default {
   name: 'App',
@@ -26,13 +26,13 @@ export default {
     User,
     Admin,
     SideMenu,
-    TheHeader,
     Sales,
     Bid,
     Orders,
     Stock,
     Analytics,
-    Users
+    Users,
+    AllCards
   },
  
   data(){

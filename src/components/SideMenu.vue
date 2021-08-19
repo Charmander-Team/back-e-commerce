@@ -48,6 +48,7 @@ export default {
       page: eventBus.page,
       items: [
         { title: "Dashboard", page:"Admin" },
+        { title: "All Cards", page:"AllCards" },
         { title: "Sales", page:"Sales" },
         { title: "Bid", page:"Bid" },
         { title: "Orders", page:"Orders" },
