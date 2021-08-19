@@ -1,5 +1,6 @@
 <template>
   <div class="allCardsWrapper">
+      <!-- {{cards}} -->
       <div class="allCardsContainer">
         <h1>All Cards</h1>
         <div class="cardsCont">
@@ -34,19 +35,23 @@
                         ></v-rating>
                         </v-row>
                     </v-card-text>
-                    <v-divider class="ma-1"></v-divider>
+                    <v-divider class="ma-3"></v-divider>
                     <v-card-text class="px-0 py-0">
                         <div class="black--text mb-1">
                         Prix: {{ card.price }} €
                         </div>
+                        <v-btn small dark color="deep-purple">
+                            Edit
+                        </v-btn>      
+                
+                        <v-btn class="ml-2" small dark color="deep-purple" @click="deleteCardById(card.id, index)">
+                            Delete
+                        </v-btn>
                     </v-card-text>
                 </v-card>
             </v-card>
         </div>
     </div>
-    
-    {{cards}}
-    
   </div>
   
 </template>
@@ -55,13 +60,26 @@
 import Vue from 'vue';
 import axios from 'axios';
 Vue.prototype.$axios = axios;
+// import { eventBus } from '../../../../main';
 
 export default {
 
 data(){
   return {
+    refresh: 0,
     cards: []
   }
+},
+methods: {
+    deleteCardById(id, index){
+        axios
+        .delete(`https://api.pokeshop.tk/api/product/${id}`)
+        // .then(eventBus.changePage("Admin"))
+        .then(response => {
+            this.cards.splice(index, 1).push(response.data)
+        })
+        console.log(id, "deleted")
+    },
 },
 mounted(){
   axios
@@ -101,7 +119,10 @@ mounted(){
     margin: 10px;
     padding: 2px;
     background-color: #9b59b6 !important;
-    
+}
+.text-lg-custom{
+    font-size: 0.75rem !important;
+    line-height: 2rem !important;
 }
 
 @media screen and (max-width: 935px) {
