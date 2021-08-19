@@ -44,7 +44,7 @@
                             Edit
                         </v-btn>      
                 
-                        <v-btn class="ml-2" small dark color="deep-purple" @click="deleteCardById(card.id, index)">
+                        <v-btn class="ml-2" small dark color="error" @click="deleteCardById(card.id, index)">
                             Delete
                         </v-btn>
                     </v-card-text>
