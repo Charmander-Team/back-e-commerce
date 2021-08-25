@@ -115,7 +115,6 @@ mounted(){
     flex-wrap: wrap;
 } 
 .cardContainer{
-    width: 20%;
     margin: 10px;
     padding: 2px;
     background-color: #9b59b6 !important;

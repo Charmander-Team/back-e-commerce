@@ -79,6 +79,7 @@ export default {
 <style lang="scss" scoped>
 .sideMenuWrapper{
   padding: 20px;
+  font-size: 1.8rem;
 }
 .sideMenuContainer{
   position: sticky;
@@ -96,6 +97,9 @@ export default {
 .sideMenu{
   background-color: #ffd32a !important;
   height: 100%;
+}
+.nav-link{
+  margin: 10px;
 }
 
 @media screen and (max-width: 935px) {

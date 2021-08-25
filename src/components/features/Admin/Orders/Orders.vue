@@ -1,6 +1,7 @@
 <template>
   <div class="ordersWrapper">
     <div class="ordersContainer">
+      {{orders_content}}
       <h1>All Orders</h1>
     <v-expansion-panels focusable popout>
       <v-expansion-panel
@@ -23,10 +24,44 @@
         </v-expansion-panel-header>
         
         <v-expansion-panel-content>
+          <div class="singleOrderContainer">
+
+            <div class="sectionBorder orderContent">
+              <div v-for="order_c in orders_content" :key="order_c.order_id">
+                <div v-if="order.id == order_c.order_id">
+                  <div v-for="product in cards" :key="product.id">
+                    <div v-if="product.id == order_c.product_id">
+                      <v-img
+                        height="auto"
+                        max-width="150"
+                        :src="product.image"
+                      ></v-img>
+                      x{{order_c.quantity}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            
+            <div class="user sectionBorder">
+              <v-img
+                width="100%"
+                height="auto"
+                max-width="250"
+                :src="order.user_object.image"
+              ></v-img>
+              <div class="userInfos">
+                <p>{{order.user_object.lastname}} {{order.user_object.firstname}}</p>
+                <p>{{order.user_object.mail}}</p>
+                <p>User Id: {{order.user_id}}</p>
+              </div>
+            </div>
+          </div>
+          
+          
           <v-divider></v-divider>
-          User Id: {{order.user_id}}
-          <v-divider></v-divider>
-          <div class="d-flex flex-column">
+          <div class="orderDate">
             <span> Date: {{order.createdAt | formatDate}} </span>
             <span> Last Update: {{order.updatedAt | formatDate}} </span>
           </div>
@@ -47,13 +82,23 @@ export default {
 
 data(){
   return {
-    orders: []
+    orders: [],
+    orders_content: [],
+    cards: []
   }
 },
 mounted(){
   axios
   .get(`https://api.pokeshop.tk/api/order/`)
   .then(response => (this.orders = response.data))
+
+  axios
+  .get(`https://api.pokeshop.tk/api/order_content/`)
+  .then(response => (this.orders_content = response.data))
+
+  axios
+  .get(`https://api.pokeshop.tk/api/product/`)
+  .then(response => (this.cards = response.data))
 },
 
 }
@@ -73,6 +118,43 @@ mounted(){
   margin: 10vh 20px 5vh 0;
   background-color: #ffd32a;
   border-radius: 10px;
+}
+.orderContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 49%;
+  height: 100%;
+  padding: 20px 5px;
+}
+.user{
+  display: flex;
+  width: 49%;
+  height: 100%;
+  padding: 20px 5px;
+}
+.userInfos{
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 100%;
+}
+.singleOrderContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 100%;
+  margin: 20px 0 0 0;
+}
+.sectionBorder{
+  border: solid 9px #dcdde1;
+  border-radius: 10px;
+}
+.orderDate{
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 935px) {
