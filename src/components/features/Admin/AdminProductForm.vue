@@ -15,7 +15,6 @@
       <!-- <label>Category Id:</label>
       <input v-model.number="form.category_id" type="number" class="form-control" pattern="[0-5]{1}"> -->
 
-      <!-- Erreur avec le v-model, binder le form et le select en meme temps ? -->
       <label for="category_id">Category Id:</label>
 
       <select name="category_id" id="category_id" v-model="form.category_id">
@@ -66,7 +65,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 Vue.prototype.$axios = axios;
-import { eventBus } from '../../../main';
+// import { eventBus } from '../../../main';
 
 export default {
   data(){
@@ -84,12 +83,6 @@ export default {
         condition: '',
       },
       errors: [],
-      select: { category_id: '1', category_name: 'Dresseurs' },
-        items: [
-          { category_id: '1', category_name: 'Dresseurs' },
-          { category_id: '2', category_name: 'Pokémons' },
-          { category_id: '3', category_name: 'Energies' },
-        ],
       }
     },
   methods: {
@@ -130,15 +123,6 @@ export default {
       const dateTime = date +' '+ time;
       this.date = dateTime;
     },
-    trySubmit(e){
-      e.preventDefault();
-      if(this.formIsValid()){
-        console.log(this.form);
-        eventBus.addProduct({...this.form});
-        this.resetForm();
-        eventBus.changePage('User');
-      }
-    },
     resetForm(){
       this.form = {
         img: '',
@@ -149,7 +133,6 @@ export default {
         description: '',
         stock: '',
         prix: '',
-        // date: this.getNow(),
         condition: '',
       }
     },
@@ -161,9 +144,9 @@ export default {
       if(!this.form.nom){
         this.errors.push('Name required !');
       }
-      // if(!this.form.category_id){
-      //   this.errors.push('Category Id required !');
-      // }
+      if(!this.form.category_id){
+        this.errors.push('Category Id required !');
+      }
       if(!this.form.ref){
         this.errors.push('Reference required !');
       }

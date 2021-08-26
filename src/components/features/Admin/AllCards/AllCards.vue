@@ -74,7 +74,6 @@ methods: {
     deleteCardById(id, index){
         axios
         .delete(`https://api.pokeshop.tk/api/product/${id}`)
-        // .then(eventBus.changePage("Admin"))
         .then(response => {
             this.cards.splice(index, 1).push(response.data)
         })
