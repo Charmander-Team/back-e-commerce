@@ -11,7 +11,7 @@
       <label>Name:</label>
       <input v-model="form.nom" type="text" class="form-control">
     </div>
-    <div class="form-group">
+    <div class="form-group d-flex flex-column">
       <!-- <label>Category Id:</label>
       <input v-model.number="form.category_id" type="number" class="form-control" pattern="[0-5]{1}"> -->
 
@@ -203,5 +203,10 @@ export default {
     background-color: #95afc0 !important;
     border-radius: 10px !important;
     color: white !important;
+  }
+  #category_id{
+    background-color: white;
+    padding: 7px;
+    border-radius: 5px;
   }
 </style>
