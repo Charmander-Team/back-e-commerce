@@ -12,8 +12,18 @@
       <input v-model="form.nom" type="text" class="form-control">
     </div>
     <div class="form-group">
-      <label>Category Id:</label>
-      <input v-model.number="form.category_id" type="number" class="form-control" pattern="[0-5]{1}">
+      <!-- <label>Category Id:</label>
+      <input v-model.number="form.category_id" type="number" class="form-control" pattern="[0-5]{1}"> -->
+
+      <!-- Erreur avec le v-model, binder le form et le select en meme temps ? -->
+      <label for="category_id">Category Id:</label>
+
+      <select name="category_id" id="category_id" v-model="form.category_id">
+          <option value="">--Please choose a category--</option>
+          <option value="1">Dresseurs</option>
+          <option value="2">Pokémons</option>
+          <option value="3">Energies</option>
+      </select>
     </div>
     <div class="form-group">
       <label>Reference:</label>
@@ -40,8 +50,8 @@
       <input v-model.number="form.date" type="number" class="form-control">
     </div> -->
     <div class="form-group">
-      <label>Bid:</label>
-      <input v-model.number="form.bid" type="number" class="form-control" pattern="[0-1]{1}">
+      <label>Condition:</label>
+      <input v-model="form.condition" type="text" class="form-control">
     </div>
     <ul v-if="errors.length">
       <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
@@ -71,11 +81,17 @@ export default {
         stock: '',
         prix: '',
         // date: this.getNow(),
-        bid: '',
+        condition: '',
       },
-      errors: []
-    }
-  },
+      errors: [],
+      select: { category_id: '1', category_name: 'Dresseurs' },
+        items: [
+          { category_id: '1', category_name: 'Dresseurs' },
+          { category_id: '2', category_name: 'Pokémons' },
+          { category_id: '3', category_name: 'Energies' },
+        ],
+      }
+    },
   methods: {
     submitForm(e) {
       e.preventDefault();
@@ -90,7 +106,7 @@ export default {
           description: this.form.description,
           stock: this.form.stock,
           price: this.form.prix,
-          bid: this.form.bid
+          condition: this.form.condition
         },
         {
           headers:{
@@ -134,7 +150,7 @@ export default {
         stock: '',
         prix: '',
         // date: this.getNow(),
-        bid: '',
+        condition: '',
       }
     },
     formIsValid(){
@@ -145,9 +161,9 @@ export default {
       if(!this.form.nom){
         this.errors.push('Name required !');
       }
-      if(!this.form.category_id){
-        this.errors.push('Category Id required !');
-      }
+      // if(!this.form.category_id){
+      //   this.errors.push('Category Id required !');
+      // }
       if(!this.form.ref){
         this.errors.push('Reference required !');
       }
@@ -166,8 +182,8 @@ export default {
       // if(!this.form.date){
       //   this.errors.push('Date required !');
       // }
-      if(this.form.bid < 0 || this.form.bid > 1){
-        this.errors.push('Bid required !');
+      if(!this.form.condition){
+        this.errors.push('Condition required !');
       }
       return this.errors.length ? false : true;
     }

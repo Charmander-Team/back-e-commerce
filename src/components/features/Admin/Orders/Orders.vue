@@ -1,7 +1,6 @@
 <template>
   <div class="ordersWrapper">
     <div class="ordersContainer">
-      {{orders_content}}
       <h1>All Orders</h1>
     <v-expansion-panels focusable popout>
       <v-expansion-panel
@@ -160,6 +159,11 @@ mounted(){
 @media screen and (max-width: 935px) {
   .ordersContainer{
     width: 100%;
+  }
+}
+@media screen and (max-width: 1650px) {
+  .user{
+    flex-wrap: wrap;
   }
 }
 
