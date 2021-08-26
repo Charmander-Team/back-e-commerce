@@ -4,11 +4,19 @@
 
   <v-card class="sideMenuContainer hidden-sm-and-down">
     <v-list shaped class="sideMenu">
-      <v-list-item class="nav-link" link @click="changePage(item.page)" height="45" v-for="(item,index) in items" :key="index" block tile small light>
+
+      <!-- Sans routeur (avec un EventBus) -->
+      <!-- <v-list-item class="nav-link" link @click="changePage(item.page)" height="45" v-for="(item,index) in items" :key="index" block tile small light>
         {{item.title}}
-      </v-list-item>
+      </v-list-item> -->
+
+      <!-- Avec vue-router -->
+      <router-link :to="item.path" class="nav-link" link height="45" v-for="(item,index) in items" :key="index" block tile small light>
+        {{item.title}}
+      </router-link>
     </v-list>
   </v-card>
+
 
   <v-app-bar-nav-icon class="hidden-md-and-up sideMenuContMobile" x-large @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
@@ -26,9 +34,9 @@
           v-model="group"
           active-class="deep-purple--text text--accent-4"
         >
-          <v-list-item class="nav-link" link @click="changePage(item.page)" height="45" v-for="(item,index) in items" :key="index" block tile small light>
+          <router-link :to="item.path" class="nav-link" link height="45" v-for="(item,index) in items" :key="index" block tile small light>
             {{item.title}}
-          </v-list-item>
+          </router-link>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -38,23 +46,19 @@
 
 <script>
 
-import {eventBus} from '../main';
-
 export default {
   data() {
     return {
       drawer: false,
       group: null,
-      page: eventBus.page,
       items: [
-        { title: "Dashboard", page:"Admin" },
-        { title: "All Cards", page:"AllCards" },
-        { title: "Sales", page:"Sales" },
-        { title: "Bid", page:"Bid" },
-        { title: "Orders", page:"Orders" },
-        { title: "Stock", page:"Stock" },
-        { title: "Analytics", page:"Analytics" },
-        { title: "Users", page:"Users" },
+        { title: "Dashboard", page:"Admin", path: "/" },
+        { title: "All Cards", page:"AllCards", path: "/allcards" },
+        { title: "Sales", page:"Sales", path: "/sales" },
+        { title: "Orders", page:"Orders", path: "/orders" },
+        { title: "Stock", page:"Stock", path: "/stock" },
+        { title: "Analytics", page:"Analytics", path: "/analytics" },
+        { title: "Users", page:"Users", path: "/users" },
       ],
     }
   },
@@ -63,16 +67,17 @@ export default {
       this.drawer = false
     }
   },
-  methods: {
-    changePage(page){
-      eventBus.changePage(page);
-    },
-    created(){
-      eventBus.$on('update:page', (page) => {
-        this.page = page;
-      })
-    }
-  }
+  // Appel de la methode changePage de l'EventBus
+  // methods: {
+  //   changePage(page){
+  //     eventBus.changePage(page);
+  //   },
+  //   created(){
+  //     eventBus.$on('update:page', (page) => {
+  //       this.page = page;
+  //     })
+  //   }
+  // }
 }
 </script>
 
