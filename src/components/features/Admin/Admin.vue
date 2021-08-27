@@ -3,30 +3,30 @@
     <div class="dashboardContainer">
       <v-container>
         <v-row class="rowClass">
-          <v-col md="8" align-self="center">
+          <v-col md="8" align-self="center" class="components-mini">
             <v-container>
               <v-row>
                 <v-col md="6" class="">
-                  <sales-mini/>
+                  <a href="/#/sales"><sales-mini/></a>
                 </v-col>
                 <v-col md="6" class="">
-                  <bid-mini/>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col md="6" class="">
-                  <orders-mini/>
-                </v-col>
-                <v-col md="6" class="">
-                  <stock-mini/>
+                  <a href="/#/allcards"><all-cards-mini/></a>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col md="6" class="">
-                  <analytics-mini/>
+                  <a href="/#/orders"><orders-mini/></a>
                 </v-col>
                 <v-col md="6" class="">
-                  <users-mini/>
+                  <a href="/#/stock"><stock-mini/></a>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col md="6" class="">
+                  <a href="/#/analytics"><analytics-mini/></a>
+                </v-col>
+                <v-col md="6" class="">
+                  <a href="/#/users"><users-mini/></a>
                 </v-col>
               </v-row>
             </v-container>
@@ -46,7 +46,7 @@ import AdminProductForm from './AdminProductForm';
 import AnalyticsMini from './Analytics/AnalyticsMini.vue';
 import UsersMini from './Users/UsersMini.vue';
 import StockMini from './Stock/StockMini.vue';
-import BidMini from './Bid/BidMini.vue';
+import AllCardsMini from './AllCards/AllCardsMini.vue';
 import OrdersMini from './Orders/OrdersMini.vue';
 import SalesMini from './Sales/SalesMini.vue';
 
@@ -54,8 +54,8 @@ export default {
   components: { 
     AdminProductForm,
     SalesMini,
-    BidMini,
     OrdersMini,
+    AllCardsMini,
     AnalyticsMini,
     UsersMini,
     StockMini
@@ -64,6 +64,10 @@ export default {
 </script>
 
 <style lang="scss">
+.components-mini{
+    margin-top: 200px;
+    margin-bottom: 200px;
+}
 .dashboardWrapper{
   width: 100%;
   height: 100%;

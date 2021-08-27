@@ -24,7 +24,7 @@
         Orders
       </div>
       <div class="subheading font-weight-light grey--text">
-        Last Campaign Performance
+          History of all orders
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon

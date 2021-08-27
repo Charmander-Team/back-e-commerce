@@ -6,7 +6,7 @@
   >
     <v-sheet
       class="v-sheet--offset mx-auto"
-      color="blue"
+      color="purple"
       elevation="12"
       max-width="calc(100% - 32px)"
     >
@@ -21,10 +21,10 @@
 
     <v-card-text class="pt-0">
       <div class="title font-weight-light mb-2">
-        Stock
+        All Cards
       </div>
       <div class="subheading font-weight-light grey--text">
-          Products in stock
+          All the availables cards
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon
@@ -42,22 +42,24 @@
   export default {
     data: () => ({
       labels: [
-        'Mon',
-        'Tue',
-        'Wed',
-        'Thu',
-        'Fri',
-        'Sat',
-        'Sun',
+        '12am',
+        '3am',
+        '6am',
+        '9am',
+        '12pm',
+        '3pm',
+        '6pm',
+        '9pm',
       ],
       value: [
-        500,
-        400,
-        300,
         200,
-        150,
+        300,
+        100,
+        400,
+        200,
         600,
-        500,
+        100,
+        300,
       ],
     }),
   }

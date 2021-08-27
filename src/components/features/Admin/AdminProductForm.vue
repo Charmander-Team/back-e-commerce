@@ -1,8 +1,19 @@
 <template>
  <form class="d-flex flex-column">
    <v-card elevation="5" class="formContainer">
-      <h4>Add new card</h4>
+        <v-row> 
+            <v-col md=10>
+                    <h4 v-if="condition === true">Add new card</h4>
+                    <h4 v-else-if="condition === false">Add new category</h4>
+            </v-col>
+            <v-col md=2>
+                    <v-icon v-if="condition === true" class="mr-2" color="white" large @click="changeForm()">mdi-arrow-right-bold</v-icon>
+                    <v-icon v-else-if="condition === false" class="mr-2" color="white" large @click="changeForm()">mdi-arrow-left-bold</v-icon>
+
+            </v-col>
+        </v-row> 
     <hr class="w-100">
+    <div v-if="condition === true" id="conditionnal-form-card">
     <div class="form-group">
       <label>Image Url:</label>
       <input v-model="form.img" type="text" class="form-control">
@@ -55,7 +66,20 @@
     <ul v-if="errors.length">
       <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
     </ul>
-    <v-btn @click="submitForm" large color="yellow" elevation="4">Ajouter</v-btn>
+    <v-btn @click="submitFormCard(e)" large color="yellow" elevation="4">Add</v-btn>
+    </div>
+    <div v-else-if="condition === false" id="conditionnal-form-category">
+
+    <div class="form-group">
+      <label>Name: </label>
+      <input v-model="category.name" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Image URL:</label>
+      <input v-model="category.image" type="text" class="form-control">
+    </div>
+    <v-btn @click="submitFormCategory()" large color="yellow" elevation="4">Add</v-btn>
+    </div>
    </v-card>
    
  </form>
@@ -68,8 +92,12 @@ Vue.prototype.$axios = axios;
 // import { eventBus } from '../../../main';
 
 export default {
+
   data(){
     return {
+      
+      condition: true,
+      
       form: {
         img: '',
         nom: '',
@@ -82,11 +110,16 @@ export default {
         // date: this.getNow(),
         condition: '',
       },
+        category: {
+            image: '',
+            name: '',
+            
+        },
       errors: [],
       }
     },
   methods: {
-    submitForm(e) {
+    submitFormCard(e) {
       e.preventDefault();
       if(this.formIsValid()){
         // POST request using axios
@@ -115,6 +148,33 @@ export default {
         this.resetForm();
       }
       
+    },
+        submitFormCategory() {
+        // POST request using axios
+        axios.post("https://api.pokeshop.tk/api/category", {
+          image: this.category.image,
+          name: this.category.name,
+},
+        {
+          headers:{
+            "Content-Type": "application/json"
+          }
+        })
+        .then(res => {
+          console.log("Category added", res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        this.resetForm();
+      
+    },
+    changeForm(){
+        if (this.condition === true) {
+            this.condition = false
+        } else if(this.condition === false){
+            this.condition = true
+        }
     },
     getNow() {
       const today = new Date();

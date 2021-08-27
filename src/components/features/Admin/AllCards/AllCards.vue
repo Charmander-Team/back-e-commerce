@@ -40,9 +40,11 @@
                         <div class="black--text mb-1">
                         Prix: {{ card.price }} €
                         </div>
-                        <v-btn small dark color="deep-purple">
-                            Edit
-                        </v-btn>      
+                        <router-link :to="'/allcards/edit/id='+card.id">                        
+                            <v-btn small dark color="deep-purple" @click="editCard()">
+                                Edit
+                            </v-btn>      
+                        </router-link>
                 
                         <v-btn class="ml-2" small dark color="error" @click="deleteCardById(card.id, index)">
                             Delete
@@ -63,7 +65,7 @@ Vue.prototype.$axios = axios;
 // import { eventBus } from '../../../../main';
 
 export default {
-
+    
 data(){
   return {
     refresh: 0,
@@ -79,6 +81,9 @@ methods: {
         })
         console.log(id, "deleted")
     },
+        editCard(){
+            
+    }
 },
 mounted(){
   axios
