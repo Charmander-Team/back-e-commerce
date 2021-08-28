@@ -41,7 +41,7 @@
                         Prix: {{ card.price }} €
                         </div>
                         <router-link :to="'/allcards/edit/id='+card.id">                        
-                            <v-btn small dark color="deep-purple" @click="editCard()">
+                            <v-btn small dark color="deep-purple">
                                 Edit
                             </v-btn>      
                         </router-link>
@@ -81,9 +81,6 @@ methods: {
         })
         console.log(id, "deleted")
     },
-        editCard(){
-            
-    }
 },
 mounted(){
   axios
@@ -129,7 +126,7 @@ mounted(){
 }
 
 @media screen and (max-width: 935px) {
-  .ordersContainer{
+  .allCardsContainer{
     width: 100%;
   }
 }

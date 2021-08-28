@@ -149,32 +149,32 @@ export default {
       }
       
     },
-        submitFormCategory() {
-        // POST request using axios
-        axios.post("https://api.pokeshop.tk/api/category", {
-          image: this.category.image,
-          name: this.category.name,
-},
-        {
-          headers:{
-            "Content-Type": "application/json"
-          }
-        })
-        .then(res => {
-          console.log("Category added", res.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-        this.resetForm();
+    submitFormCategory() {
+    // POST request using axios
+    axios.post("https://api.pokeshop.tk/api/category", {
+      image: this.category.image,
+      name: this.category.name,
+      },
+      {
+        headers:{
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => {
+        console.log("Category added", res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      this.resetForm();
       
     },
     changeForm(){
-        if (this.condition === true) {
-            this.condition = false
-        } else if(this.condition === false){
-            this.condition = true
-        }
+      if (this.condition === true) {
+          this.condition = false
+      } else if(this.condition === false){
+          this.condition = true
+      }
     },
     getNow() {
       const today = new Date();

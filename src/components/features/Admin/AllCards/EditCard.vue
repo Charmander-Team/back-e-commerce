@@ -1,5 +1,6 @@
 <template>
-<div class="global">
+<div class="editCardWrapper">
+  <div class="editCardContainer">
  <form class="d-flex flex-column">
    <v-card elevation="5" class="formContainer">
       <h4>Edit Card</h4>
@@ -61,6 +62,8 @@
    
  </form>
  </div>
+</div>
+
 </template>
 
 <script>
@@ -96,31 +99,33 @@ mounted(){
   methods: {
     submitForm(e) {
       e.preventDefault();
-        // POST request using axios
-        axios.put("https://api.pokeshop.tk/api/product/"+this.$route.params.id, {
-          image: this.form.image,
-          name: this.form.name,
-          category_id: this.form.category_id,
-          ref: this.form.ref,
-          energy_type: this.form.energy_type,
-          description: this.form.description,
-          stock: this.form.stock,
-          price: this.form.price,
-          condition: this.form.condition
-        },
-        {
-          headers:{
-            "Content-Type": "application/json"
-          }
-        })
-        .then(res => {
-          console.log("Product sent", res.data)
-        })
-        .catch(err => {
-          console.log(err)
-        })
-        this.resetForm();
-},
+      if(this.formIsValid()){
+      // POST request using axios
+      axios.put("https://api.pokeshop.tk/api/product/"+this.$route.params.id, {
+        image: this.form.image,
+        name: this.form.name,
+        category_id: this.form.category_id,
+        ref: this.form.ref,
+        energy_type: this.form.energy_type,
+        description: this.form.description,
+        stock: this.form.stock,
+        price: this.form.price,
+        condition: this.form.condition
+      },
+      {
+        headers:{
+          "Content-Type": "application/json"
+        }
+      })
+      .then(res => {
+        console.log("Product sent", res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      this.$router.go(-1);
+      }
+    },
     getNow() {
       const today = new Date();
       const date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
@@ -141,17 +146,66 @@ mounted(){
         condition: '',
       }
     },
+    formIsValid(){
+      this.errors = [];
+      if(!this.form.image){
+        this.errors.push('Image required !');
+      }
+      if(!this.form.name){
+        this.errors.push('Name required !');
+      }
+      if(!this.form.category_id){
+        this.errors.push('Category Id required !');
+      }
+      if(!this.form.ref){
+        this.errors.push('Reference required !');
+      }
+      if(!this.form.energy_type){
+        this.errors.push('Type required !');
+      }
+      if(!this.form.description){
+        this.errors.push('Description required !');
+      }
+      if(!this.form.stock){
+        this.errors.push('Stock required !');
+      }
+      if(!this.form.price){
+        this.errors.push('Price required !');
+      }
+      // if(!this.form.date){
+      //   this.errors.push('Date required !');
+      // }
+      if(!this.form.condition){
+        this.errors.push('Condition required !');
+      }
+      return this.errors.length ? false : true;
+    }
   }
 }
 </script>
 
 <style scoped>
-form{
+  form{
     width: 400px;
-}
-  .global{
-    text-align: center;
-    align-items: center;       
+  }
+  .editCardWrapper{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+  }
+  .editCardContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2vh 20px;
+    margin: 0 20px 5vh 0;
+    border-radius: 10px;
+    background-color: #ffd32a;
+    width: 90%;
   }
   h4{
     font-size: 2rem;
@@ -161,7 +215,7 @@ form{
   }
   .formContainer{
     padding: 25px 20px 20px 20px;
-    background-color: #95afc0 !important;
+    background-color: #2ed573 !important;
     border-radius: 10px !important;
     color: white !important;
   }
@@ -169,5 +223,10 @@ form{
     background-color: white;
     padding: 7px;
     border-radius: 5px;
+  }
+  @media screen and (max-width: 935px){
+    form{
+      width: 300px;
+    }
   }
 </style>
