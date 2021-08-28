@@ -66,7 +66,7 @@
     <ul v-if="errors.length">
       <li class="text-danger" v-for="error in errors" :key="error">{{ error }}</li>
     </ul>
-    <v-btn @click="submitFormCard(e)" large color="yellow" elevation="4">Add</v-btn>
+    <v-btn @click="submitFormCard()" large color="yellow" elevation="4">Add</v-btn>
     </div>
     <div v-else-if="condition === false" id="conditionnal-form-category">
 
@@ -119,8 +119,8 @@ export default {
       }
     },
   methods: {
-    submitFormCard(e) {
-      e.preventDefault();
+    submitFormCard() {
+      // e.preventDefault();
       if(this.formIsValid()){
         // POST request using axios
         axios.post("https://api.pokeshop.tk/api/product", {
