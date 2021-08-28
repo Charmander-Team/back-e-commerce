@@ -54,6 +54,7 @@ export default {
       items: [
         { title: "Dashboard", page:"Admin", path: "/" },
         { title: "All Cards", page:"AllCards", path: "/allcards" },
+        { title: "All Categories", page:"AllCategories", path: "/allcategories" },
         { title: "Sales", page:"Sales", path: "/sales" },
         { title: "Orders", page:"Orders", path: "/orders" },
         { title: "Stock", page:"Stock", path: "/stock" },

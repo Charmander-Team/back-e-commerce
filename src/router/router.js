@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import AdminVue from '../components/features/Admin/Admin.vue'
 import AllCardsVue from '../components/features/Admin/AllCards/AllCards.vue'
+import AllCategoriesVue from '../components/features/Admin/AllCategories/AllCategories.vue'
 import SalesVue from '../components/features/Admin/Sales/Sales.vue'
 import OrdersVue from '../components/features/Admin/Orders/Orders.vue'
 import StockVue from '../components/features/Admin/Stock/Stock.vue'
@@ -16,6 +17,7 @@ Vue.use(VueRouter)
 const routes = [
     { path: '/', component: AdminVue },
     { path: '/allcards', component: AllCardsVue },
+    { path: '/allcategories', component: AllCategoriesVue },
     { path: '/sales', component: SalesVue },
     { path: '/allcards/edit/id=:id', component: EditCardVue },
     { path: '/orders', component: OrdersVue },
