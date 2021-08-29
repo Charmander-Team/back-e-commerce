@@ -26,7 +26,7 @@
           <div class="singleOrderContainer">
 
             <div class="sectionBorder orderContent">
-              <div v-for="order_c in orders_content" :key="order_c.order_id">
+              <div v-for="order_c in orders_content" :key="order_c.id">
                 <div v-if="order.id == order_c.order_id">
                   <div v-for="product in cards" :key="product.id">
                     <div v-if="product.id == order_c.product_id">

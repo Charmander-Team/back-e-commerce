@@ -77,9 +77,8 @@ Vue.prototype.$axios = axios;
       .get(`https://api.pokeshop.tk/api/order/`)
       .then(response => {
         this.orders = response.data
-        console.log(response.data)
 
-        for(let order of response.data){
+        for(let order of this.orders){
           if(order.paid){
             this.orders_paid.push(order)
           }
