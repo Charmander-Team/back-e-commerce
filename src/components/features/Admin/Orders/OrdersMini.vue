@@ -21,7 +21,8 @@
 
     <v-card-text class="pt-0">
       <div class="title font-weight-light mb-2">
-        Orders
+        {{getPaidOrders()}}
+        Orders Paid
       </div>
       <div class="subheading font-weight-light grey--text">
           History of all orders
@@ -39,6 +40,11 @@
 </template>
 
 <script>
+
+import Vue from 'vue';
+import axios from 'axios';
+Vue.prototype.$axios = axios;
+
   export default {
     data: () => ({
       labels: [
@@ -61,7 +67,26 @@
         200,
         530,
       ],
+      orders: []
     }),
+    mounted(){
+      axios
+      .get(`https://api.pokeshop.tk/api/order/`)
+      .then(response => (this.orders = response.data))
+    },
+    methods: {
+      getPaidOrders(){
+        let orders_paid = []
+        for(let order of this.orders){
+          
+          if(order.paid){
+            orders_paid.push(order)
+          }
+        }
+        console.log(orders_paid)
+        return orders_paid.length
+      }
+    },
   }
 </script>
 

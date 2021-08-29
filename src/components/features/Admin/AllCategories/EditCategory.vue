@@ -41,7 +41,6 @@ export default {
       }
     },
 mounted(){
-    
   axios
   .get(`https://api.pokeshop.tk/api/category/`+this.$route.params.id)
   .then(response => (this.form = response.data))
