@@ -191,10 +191,8 @@ mounted(){
   .editCardWrapper{
     display: flex;
     justify-content: flex-end;
-    align-items: center;
     flex-wrap: wrap;
     width: 100%;
-    height: 100%;
   }
   .editCardContainer{
     display: flex;
@@ -202,7 +200,7 @@ mounted(){
     align-items: center;
     flex-direction: column;
     padding: 2vh 20px;
-    margin: 0 20px 5vh 0;
+    margin: 10vh 20px 5vh 0;
     border-radius: 10px;
     background-color: #ffd32a;
     width: 90%;

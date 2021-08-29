@@ -68,7 +68,6 @@ export default {
     
 data(){
   return {
-    refresh: 0,
     cards: []
   }
 },
@@ -87,6 +86,11 @@ mounted(){
   .get(`https://api.pokeshop.tk/api/product/`)
   .then(response => (this.cards = response.data))
 },
+updated(){
+  axios
+  .get(`https://api.pokeshop.tk/api/product/`)
+  .then(response => (this.cards = response.data))
+}
 
 }
 </script>

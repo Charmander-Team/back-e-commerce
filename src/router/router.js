@@ -10,6 +10,7 @@ import StockVue from '../components/features/Admin/Stock/Stock.vue'
 import AnalyticsVue from '../components/features/Admin/Analytics/Analytics.vue'
 import UsersVue from '../components/features/Admin/Users/Users.vue'
 import EditCardVue from '../components/features/Admin/AllCards/EditCard.vue'
+import EditCategoryVue from '../components/features/Admin/AllCategories/EditCategory.vue'
 
 
 Vue.use(VueRouter)
@@ -17,9 +18,10 @@ Vue.use(VueRouter)
 const routes = [
     { path: '/', component: AdminVue },
     { path: '/allcards', component: AllCardsVue },
-    { path: '/allcategories', component: AllCategoriesVue },
-    { path: '/sales', component: SalesVue },
     { path: '/allcards/edit/id=:id', component: EditCardVue },
+    { path: '/allcategories', component: AllCategoriesVue },
+    { path: '/allcategories/edit/id=:id', component: EditCategoryVue },
+    { path: '/sales', component: SalesVue },
     { path: '/orders', component: OrdersVue },
     { path: '/stock', component: StockVue },
     { path: '/analytics', component: AnalyticsVue },
