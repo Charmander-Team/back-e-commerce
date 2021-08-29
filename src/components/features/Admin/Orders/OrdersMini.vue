@@ -21,11 +21,12 @@
 
     <v-card-text class="pt-0">
       <div class="title font-weight-light mb-2">
-        {{getPaidOrders()}}
-        Orders Paid
+        {{orders_paid.length}}
+        Paid Orders
       </div>
-      <div class="subheading font-weight-light grey--text">
-          History of all orders
+      <div class="subheading font-weight-light mb-2">
+        {{orders_abandonned.length}}
+        Abandonned Orders
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon
@@ -67,25 +68,27 @@ Vue.prototype.$axios = axios;
         200,
         530,
       ],
-      orders: []
+      orders: [],
+      orders_paid: [],
+      orders_abandonned: []
     }),
     mounted(){
       axios
       .get(`https://api.pokeshop.tk/api/order/`)
-      .then(response => (this.orders = response.data))
-    },
-    methods: {
-      getPaidOrders(){
-        let orders_paid = []
-        for(let order of this.orders){
-          
+      .then(response => {
+        this.orders = response.data
+        console.log(response.data)
+
+        for(let order of response.data){
           if(order.paid){
-            orders_paid.push(order)
+            this.orders_paid.push(order)
+          }
+          else{
+            this.orders_abandonned.push(order)
           }
         }
-        console.log(orders_paid)
-        return orders_paid.length
-      }
+        console.log(this.orders_paid, this.orders_abandonned)
+      })
     },
   }
 </script>
