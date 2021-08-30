@@ -214,13 +214,7 @@ Vue.prototype.$axios = axios;
 export default {
   data() {
     return {
-      items: [
-        { value: 1, state: "Paid" },
-        { value: 2, state: "Not Paid" },
-        { value: 3, state: "All" },
-
-      ],
-      selectedState: null,
+      selectedState: 'All',
       orders: [],
 
       orders_content: [],
