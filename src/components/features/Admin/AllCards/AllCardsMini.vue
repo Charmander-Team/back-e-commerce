@@ -24,7 +24,7 @@
         All Cards
       </div>
       <div class="subheading font-weight-light grey--text">
-          All the availables cards
+          There are {{cards.length}} availables cards
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon
@@ -39,6 +39,11 @@
 </template>
 
 <script>
+
+import Vue from 'vue';
+import axios from 'axios';
+Vue.prototype.$axios = axios;
+
   export default {
     data: () => ({
       labels: [
@@ -61,7 +66,13 @@
         100,
         300,
       ],
+      cards: []
     }),
+    mounted(){
+      axios
+      .get(`https://api.pokeshop.tk/api/product/`)
+      .then(response => (this.cards = response.data))
+    }
   }
 </script>
 

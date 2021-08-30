@@ -21,6 +21,9 @@
 
     <v-card-text class="pt-0">
       <div class="title font-weight-light mb-2">
+        Orders
+      </div>
+      <div class="subheading font-weight-light mb-2">
         {{orders_paid.length}}
         Paid Orders
       </div>
