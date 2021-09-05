@@ -55,6 +55,7 @@ export default {
         { title: "Dashboard", page:"Admin", path: "/" },
         { title: "All Cards", page:"AllCards", path: "/allcards" },
         { title: "All Categories", page:"AllCategories", path: "/allcategories" },
+        { title: "All Pages", page:"AllPages", path: "/allpages" },
         { title: "Sales", page:"Sales", path: "/sales" },
         { title: "Orders", page:"Orders", path: "/orders" },
         { title: "Stock", page:"Stock", path: "/stock" },

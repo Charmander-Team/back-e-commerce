@@ -1,6 +1,6 @@
 <template>
   <div class="editCardWrapper">
-    <v-icon color="white" large @click="backToAllCards()"
+    <v-icon id="backArrow" color="white" large @click="backToAllCards()"
       >mdi-arrow-left-bold</v-icon
     >
     <div class="editCardContainer">
@@ -260,6 +260,9 @@ h3 {
   background-color: white;
   padding: 7px;
   border-radius: 5px;
+}
+#backArrow{
+  height: 85%;
 }
 @media screen and (max-width: 935px) {
   form {

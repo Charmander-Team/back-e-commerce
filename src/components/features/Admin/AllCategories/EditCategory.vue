@@ -1,5 +1,8 @@
 <template>
 <div class="editCategoryWrapper">
+  <v-icon id="backArrow" color="white" large @click="back()"
+      >mdi-arrow-left-bold</v-icon
+    >
   <div class="editCategoryContainer">
  <form class="d-flex flex-column">
    <v-card elevation="5" class="formContainer">
@@ -26,6 +29,7 @@
 </template>
 
 <script>
+import router from "../../../../router/router";
 import Vue from 'vue';
 import axios from 'axios';
 Vue.prototype.$axios = axios;
@@ -81,6 +85,9 @@ mounted(){
         name: ''
       }
     },
+    back() {
+      router.go(-1);
+    },
     formIsValid(){
       this.errors = [];
       if(!this.form.image){
@@ -127,6 +134,9 @@ mounted(){
     background-color: #2ed573 !important;
     border-radius: 10px !important;
     color: white !important;
+  }
+  #backArrow{
+    height: 85%;
   }
   @media screen and (max-width: 935px){
     form{
