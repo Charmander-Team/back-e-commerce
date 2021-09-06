@@ -1,6 +1,7 @@
 <template>
   <div class="ordersWrapper">
     <div class="ordersContainer">
+    {{orders}}
       <h1>All Orders</h1>
       <v-select
         v-model="selectedState"
@@ -17,6 +18,7 @@
         >
           <v-expansion-panel-header class="d-flex justify-space-around">
             <p class="text-h6 mr-5 mb-0">Order {{ order.id }}</p>
+            <p class="text-h6 mr-5 mb-0">{{ order.status }}</p>
             <div v-if="order.paid" class="d-flex justify-start align-center">
               <p class="text-subtitle-1 mr-5 mb-0">Paid</p>
               <v-icon color="teal">
@@ -85,6 +87,7 @@
         ><div v-if="order.paid">
           <v-expansion-panel-header class="d-flex justify-space-around">
             <p class="text-h6 mr-5 mb-0">Order {{ order.id }}</p>
+            <p class="text-h6 mr-5 mb-0">{{ order.status }}</p>
             <div v-if="order.paid" class="d-flex justify-start align-center">
               <p class="text-subtitle-1 mr-5 mb-0">Paid</p>
               <v-icon color="teal">
@@ -148,6 +151,7 @@
         ><div v-if="!order.paid">
           <v-expansion-panel-header class="d-flex justify-space-around">
             <p class="text-h6 mr-5 mb-0">Order {{ order.id }}</p>
+            <p class="text-h6 mr-5 mb-0">{{ order.status }}</p>
             <div v-if="order.paid === false" class="d-flex justify-start align-center">
               <p class="text-subtitle-1 mr-5 mb-0">Not Paid</p>
               <v-icon color="error">
