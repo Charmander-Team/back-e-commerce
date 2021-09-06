@@ -1,26 +1,32 @@
 <template>
  <form class="d-flex flex-column">
    <v-card elevation="5" class="formContainer">
-        <v-row> 
-            <v-col md=10>
-                    <h4 v-if="condition === true">Add new card</h4>
-                    <h4 v-else-if="condition === false">Add new category</h4>
-            </v-col>
-            <v-col md=2>
-                    <v-icon v-if="condition === true" class="mr-2" color="white" large @click="changeForm()">mdi-arrow-right-bold</v-icon>
-                    <v-icon v-else-if="condition === false" class="mr-2" color="white" large @click="changeForm()">mdi-arrow-left-bold</v-icon>
+      <v-row> 
+        <!-- <v-col md=10>
+                <h4 v-if="condition === true">Add new card</h4>
+                <h4 v-else-if="condition === false">Add new category</h4>
+        </v-col>
+        <v-col md=2>
+                <v-icon v-if="condition === true" class="mr-2" color="white" large @click="changeForm()">mdi-arrow-right-bold</v-icon>
+                <v-icon v-else-if="condition === false" class="mr-2" color="white" large @click="changeForm()">mdi-arrow-left-bold</v-icon>
 
-            </v-col>
-        </v-row> 
+        </v-col> -->
+        <v-select name="selectForm" id="selectForm" v-model="selected" filled dense color="yellow" append-icon="mdi-plus" :items="selectOptions">
+          <!-- <option disabled value="">--Please choose a form--</option>
+          <option value="card">Add New Card </option>
+          <option value="category">Add New Category</option>
+          <option value="page">Add New Page</option> -->
+        </v-select>
+      </v-row> 
     <hr class="w-100">
-    <div v-if="condition === true" id="conditionnal-form-card">
+    <div v-if="selected == 'Add New Card'" id="conditionnal-form-card">
     <div class="form-group">
       <label>Image Url:</label>
-      <input v-model="form.img" type="text" class="form-control">
+      <input v-model="form.card.img" type="text" class="form-control">
     </div>
     <div class="form-group">
       <label>Name:</label>
-      <input v-model="form.nom" type="text" class="form-control">
+      <input v-model="form.card.nom" type="text" class="form-control">
     </div>
     <div class="form-group d-flex flex-column">
       <!-- <label>Category Id:</label>
@@ -28,7 +34,7 @@
 
       <label for="category_id">Category Id:</label>
 
-      <select name="category_id" id="category_id" v-model="form.category_id">
+      <select name="category_id" id="category_id" v-model="form.card.category_id">
           <option value="">--Please choose a category--</option>
           <option value="1">Dresseurs</option>
           <option value="2">Pokémons</option>
@@ -37,23 +43,23 @@
     </div>
     <div class="form-group">
       <label>Reference:</label>
-      <input v-model="form.ref" type="text" class="form-control">
+      <input v-model="form.card.ref" type="text" class="form-control">
     </div>
     <div class="form-group">
       <label>Energy Type:</label>
-      <input v-model="form.type" type="text" class="form-control">
+      <input v-model="form.card.type" type="text" class="form-control">
     </div>
     <div class="form-group">
       <label>Description:</label>
-      <input v-model="form.description" type="textarea" class="form-control">
+      <input v-model="form.card.description" type="textarea" class="form-control">
     </div>
     <div class="form-group">
       <label>Stock:</label>
-      <input v-model.number="form.stock" type="number" class="form-control">
+      <input v-model.number="form.card.stock" type="number" class="form-control">
     </div>
     <div class="form-group">
       <label>Price:</label>
-      <input v-model.number="form.prix" type="number" class="form-control">
+      <input v-model.number="form.card.prix" type="number" class="form-control">
     </div>
     <!-- <div class="form-group">
       <label>Date:</label>
@@ -62,7 +68,7 @@
     <div class="form-group d-flex flex-column">
       <label>Condition:</label>
       <!-- <input v-model="form.condition" type="text" class="form-control"> -->
-      <select name="condition" id="condition" v-model="form.condition">
+      <select name="condition" id="condition" v-model="form.card.condition">
           <option value="">--Please choose a condition--</option>
           <option value="M">Mint</option>
           <option value="NM">Near Mint</option>
@@ -78,17 +84,61 @@
     </ul>
     <v-btn @click="submitFormCard()" large color="yellow" elevation="4">Add</v-btn>
     </div>
-    <div v-else-if="condition === false" id="conditionnal-form-category">
+
+    <div v-else-if="selected == 'Add New Category'" id="conditionnal-form-category">
 
     <div class="form-group">
       <label>Name: </label>
-      <input v-model="category.name" type="text" class="form-control">
+      <input v-model="form.category.name" type="text" class="form-control">
     </div>
     <div class="form-group">
       <label>Image URL:</label>
-      <input v-model="category.image" type="text" class="form-control">
+      <input v-model="form.category.image" type="text" class="form-control">
     </div>
     <v-btn @click="submitFormCategory()" large color="yellow" elevation="4">Add</v-btn>
+    </div>
+
+    <div v-else-if="selected == 'Add New Page'" id="conditionnal-form-category">
+
+    <div class="form-group">
+      <label>Title: </label>
+      <input v-model="form.page.title" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Navbar Title: </label>
+      <input v-model="form.page.navbar_title" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Page Color: </label>
+      <input v-model="form.page.page_color" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Text Color: </label>
+      <input v-model="form.page.text_color" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Content: </label>
+      <input v-model="form.page.content" type="textarea" class="form-control">
+    </div>
+    
+    <div class="form-group">
+      <label>Image URL:</label>
+      <input v-model="form.page.image" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Link: </label>
+      <input v-model="form.page.link" type="text" class="form-control">
+    </div>
+    <div class="form-group d-flex flex-column">
+      <label for="display">Display:</label>
+
+      <select name="display" id="display" v-model="form.page.display">
+          <option value="">--Please choose a value--</option>
+          <option value="0">Hidden</option>
+          <option value="1">Visible</option>
+      </select>
+    </div>
+    <v-btn @click="submitFormPage()" large color="yellow" elevation="4">Add</v-btn>
     </div>
    </v-card>
    
@@ -99,50 +149,64 @@
 import Vue from 'vue';
 import axios from 'axios';
 Vue.prototype.$axios = axios;
-// import { eventBus } from '../../../main';
 
 export default {
 
   data(){
     return {
       
-      condition: true,
+      selected: 'Add New Card',
+
+      selectOptions:[
+        "Add New Card", "Add New Category", "Add New Page"
+      ],
       
       form: {
-        img: '',
-        nom: '',
-        category_id: '',
-        ref: '',
-        type: '',
-        description: '',
-        stock: '',
-        prix: '',
-        // date: this.getNow(),
-        condition: '',
-      },
-        category: {
-            image: '',
-            name: '',
-            
+        card: {
+          img: '',
+          nom: '',
+          category_id: '',
+          ref: '',
+          type: '',
+          description: '',
+          stock: '',
+          prix: '',
+          // date: this.getNow(),
+          condition: '',
         },
+        category: {
+          image: '',
+          name: '',
+        },
+        page: {
+          navbar_title: '',
+          page_color: '',
+          text_color: '',
+          title: '',
+          content: '',
+          image: '',
+          link: '',
+          display: '',
+        },
+      },
       errors: [],
       }
     },
   methods: {
     submitFormCard() {
       // e.preventDefault();
-      if(this.formIsValid()){
+      if(this.formCardIsValid()){
         // POST request using axios
         axios.post("https://api.pokeshop.tk/api/product", {
-          image: this.form.img,
-          name: this.form.nom,
-          category_id: this.form.category_id,
-          ref: this.form.ref,
-          energy_type: this.form.type,
-          description: this.form.description,
-          stock: this.form.stock,
-          price: this.form.prix,
-          condition: this.form.condition
+          image: this.form.card.img,
+          name: this.form.card.nom,
+          category_id: this.form.card.category_id,
+          ref: this.form.card.ref,
+          energy_type: this.form.card.type,
+          description: this.form.card.description,
+          stock: this.form.card.stock,
+          price: this.form.card.prix,
+          condition: this.form.card.condition
         },
         {
           headers:{
@@ -162,8 +226,8 @@ export default {
     submitFormCategory() {
     // POST request using axios
     axios.post("https://api.pokeshop.tk/api/category", {
-      image: this.category.image,
-      name: this.category.name,
+      image: this.form.category.image,
+      name: this.form.category.name,
       },
       {
         headers:{
@@ -171,7 +235,7 @@ export default {
         }
       })
       .then(res => {
-        console.log("Category added", res.data)
+        console.log("Category sent", res.data)
       })
       .catch(err => {
         console.log(err)
@@ -179,12 +243,30 @@ export default {
       this.resetForm();
       
     },
-    changeForm(){
-      if (this.condition === true) {
-          this.condition = false
-      } else if(this.condition === false){
-          this.condition = true
-      }
+    submitFormPage() {
+        // POST request using axios
+        axios.post("https://api.pokeshop.tk/api/page", {
+          navbar_title: this.form.page.navbar_title,
+          page_color: this.form.page.page_color,
+          text_color: this.form.page.text_color,
+          title: this.form.page.title,
+          content: this.form.page.content,
+          image: this.form.page.image,
+          link: this.form.page.link,
+          display: this.form.page.display
+        },
+        {
+          headers:{
+            "Content-Type": "application/json"
+          }
+        })
+        .then(res => {
+          console.log("Page sent", res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        this.resetForm();
     },
     getNow() {
       const today = new Date();
@@ -194,7 +276,7 @@ export default {
       this.date = dateTime;
     },
     resetForm(){
-      this.form = {
+      this.form.card = {
         img: '',
         nom: '',
         category_id: '',
@@ -205,37 +287,51 @@ export default {
         prix: '',
         condition: '',
       }
+      this.form.category = {
+        image: '',
+        name: ''
+      }
+      this.form.page = {
+        navbar_title: '',
+        page_color: '',
+        text_color: '',
+        title: '',
+        content: '',
+        image: '',
+        link: '',
+        display: ''
+      }
     },
-    formIsValid(){
+    formCardIsValid(){
       this.errors = [];
-      if(!this.form.img){
+      if(!this.form.card.img){
         this.errors.push('Image required !');
       }
-      if(!this.form.nom){
+      if(!this.form.card.nom){
         this.errors.push('Name required !');
       }
-      if(!this.form.category_id){
+      if(!this.form.card.category_id){
         this.errors.push('Category Id required !');
       }
-      if(!this.form.ref){
+      if(!this.form.card.ref){
         this.errors.push('Reference required !');
       }
-      if(!this.form.type){
+      if(!this.form.card.type){
         this.errors.push('Type required !');
       }
-      if(!this.form.description){
+      if(!this.form.card.description){
         this.errors.push('Description required !');
       }
-      if(!this.form.stock){
+      if(!this.form.card.stock){
         this.errors.push('Stock required !');
       }
-      if(!this.form.prix){
+      if(!this.form.card.prix){
         this.errors.push('Price required !');
       }
       // if(!this.form.date){
       //   this.errors.push('Date required !');
       // }
-      if(!this.form.condition){
+      if(!this.form.card.condition){
         this.errors.push('Condition required !');
       }
       return this.errors.length ? false : true;
@@ -257,9 +353,12 @@ export default {
     border-radius: 10px !important;
     color: white !important;
   }
-  #category_id, #condition{
+  #category_id, #condition, #display{
     background-color: white;
     padding: 7px;
     border-radius: 5px;
+  }
+  .v-input{
+    font-size: 1.5rem !important;
   }
 </style>

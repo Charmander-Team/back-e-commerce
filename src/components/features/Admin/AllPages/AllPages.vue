@@ -11,7 +11,6 @@
                 <v-img
                 width="100%"
                 height="auto"
-                max-width="250"
                 :src="page.image"
                 ></v-img>
                 <v-card class="mt-1 pa-2">
