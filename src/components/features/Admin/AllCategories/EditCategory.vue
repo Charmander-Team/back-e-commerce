@@ -69,7 +69,9 @@ mounted(){
       .catch(err => {
         console.log(err)
       })
-      this.$router.push({ path: '/allcategories'})
+      setTimeout(() => {
+            this.$router.go(-1);
+          }, 500)
       }
     },
     getNow() {

@@ -113,7 +113,9 @@ mounted(){
       .catch(err => {
         console.log(err)
       })
-      this.$router.push({ path: '/allpages'})
+      setTimeout(() => {
+            this.$router.go(-1);
+          }, 100)
       }
     },
     back() {

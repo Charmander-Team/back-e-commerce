@@ -161,7 +161,9 @@ export default {
           .catch((err) => {
             console.log(err);
           });
-        this.$router.go(-1);
+          setTimeout(() => {
+            this.$router.go(-1);
+          }, 500)
       }
     },
     backToAllCards() {

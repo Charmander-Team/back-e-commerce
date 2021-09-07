@@ -3,7 +3,7 @@
     <div class="dashboardContainer">
       <v-container>
         <v-row class="rowClass">
-          <v-col md="8" align-self="center" class="components-mini">
+          <v-col md="8" align-self="center" >
             <v-container>
               <v-row>
                 <v-col md="6" class="">

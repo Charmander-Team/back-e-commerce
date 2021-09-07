@@ -16,13 +16,13 @@
                 :src="card.image"
                 ></v-img>
                 <v-card class="mt-1 pa-2">
-                    <v-card-title class="px-0 py-0 text-lg-body-3 text-md-body-1">
+                    <v-card-title class="px-0 py-0 text-md-body-1">
                         {{ card.name }}
                     </v-card-title>
-                    <v-card-text class="px-0 py-0 text-lg-custom">
+                    <v-card-text class="px-0 py-0">
                         <div class="grey--text">Ref: {{ card.ref }}</div>
                         <div class="grey--text">Type: {{ card.energy_type }}</div>
-                        <v-row align="center" class="mx-0">
+                        <div class="d-flex">
                         <div class="grey--text">
                             Etat:
                         </div>
@@ -34,7 +34,7 @@
                             readonly
                             size="14"
                         ></v-rating>
-                        </v-row>
+                        </div>
                     </v-card-text>
                     <v-divider class="ma-3"></v-divider>
                     <v-card-text class="px-0 py-0">
