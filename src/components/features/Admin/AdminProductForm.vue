@@ -70,13 +70,11 @@
       <!-- <input v-model="form.condition" type="text" class="form-control"> -->
       <select name="condition" id="condition" v-model="form.card.condition">
           <option value="">--Please choose a condition--</option>
-          <option value="M">Mint</option>
-          <option value="NM">Near Mint</option>
-          <option value="EX">Excellent</option>
-          <option value="GD">Good</option>
-          <option value="LP">Light Played</option>
-          <option value="PL">Played</option>
-          <option value="P">Poor</option>
+          <option value="5">Mint</option>
+          <option value="4">Excellent</option>
+          <option value="3">Good</option>
+          <option value="2">Played</option>
+          <option value="1">Poor</option>
       </select>
     </div>
     <ul v-if="errors.length">

@@ -73,9 +73,18 @@
       <label>Date:</label>
       <input v-model.number="form.date" type="number" class="form-control">
     </div> -->
-          <div class="form-group">
+          <div class="form-group d-flex flex-column">
             <label>Condition:</label>
-            <input v-model="form.condition" type="text" class="form-control" />
+            <!-- <input v-model="form.condition" type="text" class="form-control" /> -->
+
+            <select name="condition" id="condition" v-model="form.condition">
+                <option value="">--Please choose a condition--</option>
+                <option value="5">Mint</option>
+                <option value="4">Excellent</option>
+                <option value="3">Good</option>
+                <option value="2">Played</option>
+                <option value="1">Poor</option>
+            </select>
           </div>
           <ul v-if="errors.length">
             <li class="text-danger" v-for="error in errors" :key="error">
@@ -261,6 +270,11 @@ h3 {
   padding: 7px;
   border-radius: 5px;
 }
+#condition{
+    background-color: white;
+    padding: 7px;
+    border-radius: 5px;
+  }
 #backArrow{
   height: 85%;
 }

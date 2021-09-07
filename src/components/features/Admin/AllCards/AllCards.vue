@@ -1,6 +1,7 @@
 <template>
   <div class="allCardsWrapper">
-      <!-- {{cards}} -->
+      <!-- {{cards}}
+      {{ rating }} -->
       <div class="allCardsContainer">
         <h1>All Cards</h1>
         <div class="cardsCont">
@@ -26,7 +27,7 @@
                             Etat:
                         </div>
                         <v-rating
-                            :value="card.niveau"
+                            :value="card.condition"
                             color="amber"
                             dense
                             half-increments
@@ -68,7 +69,7 @@ export default {
     
 data(){
   return {
-    cards: []
+    cards: [],
   }
 },
 methods: {
@@ -82,9 +83,15 @@ methods: {
     },
 },
 mounted(){
-  axios
-  .get(`https://api.pokeshop.tk/api/product/`)
-  .then(response => (this.cards = response.data))
+    axios
+    .get(`https://api.pokeshop.tk/api/product/`)
+    .then(response => {
+        this.cards = response.data
+
+        for(let card of this.cards){
+            card.condition = parseInt(card.condition)
+        }
+    })
 }
 
 }
