@@ -64,11 +64,6 @@ mounted(){
     axios
     .get(`https://api.pokeshop.tk/api/category/`)
     .then(response => (this.categories = response.data))
-},
-updated(){
-    axios
-    .get(`https://api.pokeshop.tk/api/category/`)
-    .then(response => (this.categories = response.data))
 }
 
 }

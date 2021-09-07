@@ -89,7 +89,7 @@ Vue.prototype.$axios = axios;
             this.orders_abandonned.push(order)
           }
         }
-        console.log(this.orders_paid, this.orders_abandonned)
+        // console.log(this.orders_paid, this.orders_abandonned)
       })
     },
   }

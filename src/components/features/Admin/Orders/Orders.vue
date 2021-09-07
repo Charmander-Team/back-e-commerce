@@ -1,7 +1,7 @@
 <template>
   <div class="ordersWrapper">
     <div class="ordersContainer">
-    {{orders}}
+    <!-- {{orders}} -->
       <h1>All Orders</h1>
       <v-select
         v-model="selectedState"

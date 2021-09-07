@@ -85,11 +85,6 @@ mounted(){
   axios
   .get(`https://api.pokeshop.tk/api/product/`)
   .then(response => (this.cards = response.data))
-},
-updated(){
-  axios
-  .get(`https://api.pokeshop.tk/api/product/`)
-  .then(response => (this.cards = response.data))
 }
 
 }
