@@ -156,7 +156,7 @@ export default {
             }
           )
           .then((res) => {
-            console.log("Product sent", res.data);
+            console.log("Product modified", res.data);
           })
           .catch((err) => {
             console.log(err);
@@ -182,7 +182,6 @@ export default {
       const dateTime = date + " " + time;
       this.date = dateTime;
     },
-    backToAllCardsPage() {},
     resetForm() {
       this.form = {
         image: "",

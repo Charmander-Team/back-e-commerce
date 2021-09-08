@@ -9,6 +9,7 @@ import OrdersVue from '../components/features/Admin/Orders/Orders.vue'
 import StockVue from '../components/features/Admin/Stock/Stock.vue'
 import AnalyticsVue from '../components/features/Admin/Analytics/Analytics.vue'
 import UsersVue from '../components/features/Admin/Users/Users.vue'
+import EditUserVue from '../components/features/Admin/Users/EditUser.vue'
 import EditCardVue from '../components/features/Admin/AllCards/EditCard.vue'
 import EditCategoryVue from '../components/features/Admin/AllCategories/EditCategory.vue'
 import AllPagesVue from '../components/features/Admin/AllPages/AllPages.vue'
@@ -29,7 +30,8 @@ const routes = [
     { path: '/orders', component: OrdersVue },
     { path: '/stock', component: StockVue },
     { path: '/analytics', component: AnalyticsVue },
-    { path: '/users', component: UsersVue }
+    { path: '/users', component: UsersVue },
+    { path: '/users/edit/id=:id', component: EditUserVue },
 ]
 
 const router = new VueRouter({

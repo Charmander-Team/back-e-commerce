@@ -1,7 +1,5 @@
 <template>
   <div class="allCardsWrapper">
-      <!-- {{cards}}
-      {{ rating }} -->
       <div class="allCardsContainer">
         <h1>All Cards</h1>
         <div class="cardsCont">
@@ -99,6 +97,7 @@ mounted(){
 
 <style>
 .allCardsWrapper{
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;

@@ -250,6 +250,10 @@ export default {
   min-height: 100%;
 }
 .ordersContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 80%;
   padding: 2vh 20px;
   margin: 10vh 20px 5vh 0;
