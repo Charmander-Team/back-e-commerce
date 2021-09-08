@@ -28,6 +28,7 @@ const routes = [
     { path: '/allpages/edit/id=:id', component: EditPageVue },
     { path: '/sales', component: SalesVue },
     { path: '/orders', component: OrdersVue },
+    { path: '/orders/user_id=:id', component: OrdersVue },
     { path: '/stock', component: StockVue },
     { path: '/analytics', component: AnalyticsVue },
     { path: '/users', component: UsersVue },

@@ -33,9 +33,15 @@
               </v-btn>      
               </router-link>
       
-              <v-btn class="ml-2" small dark color="error" @click="deleteUserById(user.id, index)">
+              <v-btn class="mx-2" small dark color="error" @click="deleteUserById(user.id, index)">
                   Delete
               </v-btn>
+
+              <router-link :to="'/orders/user_id='+user.id">                        
+              <v-btn small dark color="#ffd32a">
+                  Orders
+              </v-btn>      
+              </router-link>
               <div class="adminTextBlock text-overline">
                 <div class="adminText">ADMIN</div>
               </div>
@@ -47,9 +53,14 @@
               </v-btn>      
               </router-link>
       
-              <v-btn class="ml-2" small dark color="error" @click="deleteUserById(user.id, index)">
+              <v-btn class="mx-2" small dark color="error" @click="deleteUserById(user.id, index)">
                   Delete
               </v-btn>
+              <router-link :to="'/orders/user_id='+user.id">                        
+              <v-btn small dark color="#ffd32a">
+                  Orders
+              </v-btn>      
+              </router-link>
           </v-card-actions>
         </v-card>
       </div>
