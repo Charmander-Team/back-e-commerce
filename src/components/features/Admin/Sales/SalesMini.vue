@@ -24,7 +24,8 @@
         Sales
       </div>
       <div class="subheading font-weight-light grey--text">
-        Last Campaign Performance
+        {{getTotalSales()}}
+        € CA total
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon
@@ -39,6 +40,10 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import axios from 'axios';
+Vue.prototype.$axios = axios;
+
   export default {
     data: () => ({
       labels: [
@@ -59,7 +64,38 @@
         460,
         500,
       ],
+      orders_contents: [],
+      cards: []
     }),
+    mounted(){
+      axios
+      .get(`https://api.pokeshop.tk/api/order_content/`)
+      .then(response => {
+        this.orders_contents = response.data
+        })
+
+      axios
+      .get(`https://api.pokeshop.tk/api/product/`)
+      .then(response => (this.cards = response.data))
+    },
+    methods: {
+      getTotalSales(){
+        let amount = 0;
+        for(let order_content of this.orders_contents){
+          const product_id = order_content.product_id
+          const qty = order_content.quantity
+          for(let card of this.cards){
+            if(card.id == product_id){
+              const product_price = card.price
+              let total_products_price = product_price * qty
+              amount += total_products_price
+              // console.log(amount)
+            }
+          }
+        }
+        return amount
+      }
+    }
   }
 </script>
 
