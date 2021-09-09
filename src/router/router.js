@@ -6,6 +6,7 @@ import AllCardsVue from '../components/features/Admin/AllCards/AllCards.vue'
 import AllCategoriesVue from '../components/features/Admin/AllCategories/AllCategories.vue'
 import SalesVue from '../components/features/Admin/Sales/Sales.vue'
 import OrdersVue from '../components/features/Admin/Orders/Orders.vue'
+import OrderByUserIdVue from '../components/features/Admin/Orders/OrderByUserId.vue'
 import StockVue from '../components/features/Admin/Stock/Stock.vue'
 import AnalyticsVue from '../components/features/Admin/Analytics/Analytics.vue'
 import UsersVue from '../components/features/Admin/Users/Users.vue'
@@ -28,7 +29,7 @@ const routes = [
     { path: '/allpages/edit/id=:id', component: EditPageVue },
     { path: '/sales', component: SalesVue },
     { path: '/orders', component: OrdersVue },
-    { path: '/orders/user_id=:id', component: OrdersVue },
+    { path: '/ordersbyuserid/user_id=:id', component: OrderByUserIdVue },
     { path: '/stock', component: StockVue },
     { path: '/analytics', component: AnalyticsVue },
     { path: '/users', component: UsersVue },

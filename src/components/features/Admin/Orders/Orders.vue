@@ -51,7 +51,7 @@
                   </div>
                 </div>
               </div>
-
+              
               <div class="user sectionBorder">
                 <v-img
                   width="100%"

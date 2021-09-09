@@ -37,7 +37,7 @@
                   Delete
               </v-btn>
 
-              <router-link :to="'/orders/user_id='+user.id">                        
+              <router-link :to="'/ordersbyuserid/user_id='+user.id">                        
               <v-btn small dark color="#ffd32a">
                   Orders
               </v-btn>      
@@ -56,7 +56,7 @@
               <v-btn class="mx-2" small dark color="error" @click="deleteUserById(user.id, index)">
                   Delete
               </v-btn>
-              <router-link :to="'/orders/user_id='+user.id">                        
+              <router-link :to="'/ordersbyuserid/user_id='+user.id">                        
               <v-btn small dark color="#ffd32a">
                   Orders
               </v-btn>      
@@ -130,6 +130,7 @@ mounted(){
 .userContainer{
   width: 45%;
   margin: 10px;
+  border-radius: 10px !important;
 }
 .adminColor{
   background-color: #009432 !important;
