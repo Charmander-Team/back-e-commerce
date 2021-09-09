@@ -21,7 +21,7 @@
 
     <v-card-text class="pt-0">
       <div class="title font-weight-light mb-2">
-        All Cards
+        Cards
       </div>
       <div class="subheading font-weight-light grey--text">
           There are {{cards.length}} availables cards

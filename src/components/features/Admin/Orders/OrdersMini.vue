@@ -23,13 +23,13 @@
       <div class="title font-weight-light mb-2">
         Orders
       </div>
-      <div class="subheading font-weight-light mb-2">
+      <div class="subheading font-weight-light grey--text">
         {{orders_paid.length}}
-        Paid Orders
+        Paid
       </div>
-      <div class="subheading font-weight-light mb-2">
+      <div class="subheading font-weight-light grey--text">
         {{orders_abandonned.length}}
-        Abandonned Orders
+        Abandonned
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon

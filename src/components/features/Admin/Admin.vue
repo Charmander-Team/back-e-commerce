@@ -23,7 +23,7 @@
               </v-row>
               <v-row>
                 <v-col md="6" class="">
-                  <a href="/#/analytics"><analytics-mini/></a>
+                  <a href="/#/allcategories"><all-categories-mini/></a>
                 </v-col>
                 <v-col md="6" class="">
                   <a href="/#/users"><users-mini/></a>
@@ -43,7 +43,7 @@
 
 <script>
 import AdminProductForm from './AdminProductForm';
-import AnalyticsMini from './Analytics/AnalyticsMini.vue';
+import AllCategoriesMini from './AllCategories/AllCategoriesMini.vue';
 import UsersMini from './Users/UsersMini.vue';
 import StockMini from './Stock/StockMini.vue';
 import AllCardsMini from './AllCards/AllCardsMini.vue';
@@ -56,9 +56,9 @@ export default {
     SalesMini,
     OrdersMini,
     AllCardsMini,
-    AnalyticsMini,
     UsersMini,
-    StockMini
+    StockMini,
+    AllCategoriesMini
     }
 }
 </script>
@@ -84,9 +84,6 @@ export default {
   margin: 10vh 20px 5vh 0;
   background-color: #ffd32a;
   border-radius: 10px;
-}
-.analytics{
-  height:100%
 }
 .red{
   background-color: red;

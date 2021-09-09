@@ -10,7 +10,7 @@
       elevation="12"
       max-width="calc(100% - 32px)"
     >
-      <v-sparkline
+      <v-sparkline 
         :labels="labels"
         :value="value"
         color="white"
@@ -24,7 +24,7 @@
         Users
       </div>
       <div class="subheading font-weight-light grey--text">
-          All the users
+          There are {{users.length}} user account
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon
@@ -39,6 +39,10 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import axios from 'axios';
+Vue.prototype.$axios = axios;
+
   export default {
     data: () => ({
       labels: [
@@ -61,7 +65,13 @@
         600,
         700,
       ],
+      users: []
     }),
+    mounted(){
+      axios
+      .get(`https://api.pokeshop.tk/api/user/`)
+      .then(response => (this.users = response.data))
+    }
   }
 </script>
 

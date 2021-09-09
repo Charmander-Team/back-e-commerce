@@ -21,10 +21,10 @@
 
     <v-card-text class="pt-0">
       <div class="title font-weight-light mb-2">
-        Bid
+        Categories
       </div>
       <div class="subheading font-weight-light grey--text">
-        Last Campaign Performance
+          There are {{categories.length}} categories
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon
@@ -39,6 +39,11 @@
 </template>
 
 <script>
+
+import Vue from 'vue';
+import axios from 'axios';
+Vue.prototype.$axios = axios;
+
   export default {
     data: () => ({
       labels: [
@@ -52,16 +57,22 @@
         '9pm',
       ],
       value: [
-        0,
-        0,
-        10,
-        0,
-        20,
+        200,
+        300,
         100,
-        50,
-        70,
+        400,
+        200,
+        600,
+        100,
+        300,
       ],
+      categories: []
     }),
+    mounted(){
+      axios
+      .get(`https://api.pokeshop.tk/api/category/`)
+      .then(response => (this.categories = response.data))
+    }
   }
 </script>
 

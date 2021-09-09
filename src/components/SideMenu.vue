@@ -11,8 +11,10 @@
       </v-list-item> -->
 
       <!-- Avec vue-router -->
-      <router-link :to="item.path" class="nav-link" link height="45" v-for="(item,index) in items" :key="index" block tile small light>
-        {{item.title}}
+      <router-link :to="item.path" class="nav-link text-overline" link height="45" v-for="(item,index) in items" :key="index">
+        <div class="text-menu">
+          {{item.title}}
+        </div> 
       </router-link>
     </v-list>
   </v-card>
@@ -34,7 +36,7 @@
           v-model="group"
           active-class="deep-purple--text text--accent-4"
         >
-          <router-link :to="item.path" class="nav-link" link height="45" v-for="(item,index) in items" :key="index" block tile small light>
+          <router-link :to="item.path" class="nav-link" link height="45" v-for="(item,index) in items" :key="index">
             {{item.title}}
           </router-link>
         </v-list-item-group>
@@ -53,13 +55,12 @@ export default {
       group: null,
       items: [
         { title: "Dashboard", page:"Admin", path: "/" },
-        { title: "All Cards", page:"AllCards", path: "/allcards" },
-        { title: "All Categories", page:"AllCategories", path: "/allcategories" },
-        { title: "All Pages", page:"AllPages", path: "/allpages" },
+        { title: "Cards", page:"AllCards", path: "/allcards" },
+        { title: "Categories", page:"AllCategories", path: "/allcategories" },
+        { title: "Pages", page:"AllPages", path: "/allpages" },
         { title: "Sales", page:"Sales", path: "/sales" },
         { title: "Orders", page:"Orders", path: "/orders" },
         { title: "Stock", page:"Stock", path: "/stock" },
-        { title: "Analytics", page:"Analytics", path: "/analytics" },
         { title: "Users", page:"Users", path: "/users" },
       ],
     }
@@ -104,9 +105,18 @@ export default {
 .sideMenu{
   background-color: #ffd32a !important;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
 }
 .nav-link{
   margin: 7px;
+}
+.text-menu{
+  color: #95afc0 !important;
+  font-size: 1.4rem !important;
+  line-height: 3rem;
 }
 
 @media screen and (max-width: 935px) {
