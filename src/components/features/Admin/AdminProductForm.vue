@@ -45,9 +45,22 @@
       <label>Reference:</label>
       <input v-model="form.card.ref" type="text" class="form-control">
     </div>
-    <div class="form-group">
+    <div class="form-group d-flex flex-column">
       <label>Energy Type:</label>
-      <input v-model="form.card.type" type="text" class="form-control">
+      <!-- <input v-model="form.condition" type="text" class="form-control"> -->
+      <select name="type" id="type" v-model="form.card.type">
+          <option value="">--Please choose an energy type--</option>
+          <option value="Normal">Normal</option>
+          <option value="Fire">Fire</option>
+          <option value="Grass">Grass</option>
+          <option value="Water">Water</option>
+          <option value="Lightning">Lightning</option>
+          <option value="Psychic">Psychic</option>
+          <option value="Fighting">Fighting</option>
+          <option value="Darkness">Darkness</option>
+          <option value="Metal">Metal</option>
+          <option value="Fairy">Fairy</option>
+      </select>
     </div>
     <div class="form-group">
       <label>Description:</label>
@@ -61,10 +74,6 @@
       <label>Price:</label>
       <input v-model.number="form.card.prix" type="number" class="form-control">
     </div>
-    <!-- <div class="form-group">
-      <label>Date:</label>
-      <input v-model.number="form.date" type="number" class="form-control">
-    </div> -->
     <div class="form-group d-flex flex-column">
       <label>Condition:</label>
       <!-- <input v-model="form.condition" type="text" class="form-control"> -->
@@ -351,7 +360,7 @@ export default {
     border-radius: 10px !important;
     color: white !important;
   }
-  #category_id, #condition, #display{
+  #category_id, #condition, #display, #type{
     background-color: white;
     padding: 7px;
     border-radius: 5px;

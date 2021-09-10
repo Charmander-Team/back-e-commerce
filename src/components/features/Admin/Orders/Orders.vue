@@ -38,14 +38,18 @@
               <div class="sectionBorder orderContent">
                 <div v-for="order_c in orders_content" :key="order_c.id">
                   <div v-if="order.id == order_c.order_id">
+
                     <div v-for="product in cards" :key="product.id">
-                      <div v-if="product.id == order_c.product_id">
+                      <div v-if="product.id == order_c.product_id" class="m-1">
                         <v-img
                           height="auto"
                           max-width="150"
                           :src="product.image"
                         ></v-img>
-                        x{{ order_c.quantity }}
+                        <div class="d-flex justify-space-around">
+                          <p>x{{ order_c.quantity }}</p> 
+                          <p>{{getOrderContentPrice(product.price, order_c.quantity)}}€</p> 
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -236,8 +240,12 @@ export default {
     axios
       .get(`https://api.pokeshop.tk/api/product/`)
       .then((response) => (this.cards = response.data));
-
   },
+  methods: {
+    getOrderContentPrice(price, qty){
+      return price * qty
+    }
+  }
 };
 </script>
 

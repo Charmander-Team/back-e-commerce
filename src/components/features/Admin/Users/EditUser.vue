@@ -158,9 +158,6 @@ export default {
     },
     formIsValid() {
       this.errors = [];
-      if (!this.form.image) {
-        this.errors.push("Image required !");
-      }
       if (!this.form.lastname) {
         this.errors.push("Lastname required !");
       }
