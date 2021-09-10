@@ -16,6 +16,9 @@
           {{item.title}}
         </div> 
       </router-link>
+      <div class="nav-link text-overline" link height="45">
+        <a href="https://pokeshop.tk" class="text-menu">Pokeshop.tk</a>
+      </div>
     </v-list>
   </v-card>
 
@@ -60,7 +63,6 @@ export default {
         { title: "Pages", page:"AllPages", path: "/allpages" },
         { title: "Sales", page:"Sales", path: "/sales" },
         { title: "Orders", page:"Orders", path: "/orders" },
-        { title: "Stock", page:"Stock", path: "/stock" },
         { title: "Users", page:"Users", path: "/users" },
       ],
     }
@@ -94,7 +96,7 @@ export default {
   top: 10vh;
   left: 50px;
   border-radius: 10px;
-  width: 256px;
+  width: 300px;
 }
 .sideMenuContMobile{
   position: sticky;
@@ -117,6 +119,7 @@ export default {
   color: #95afc0 !important;
   font-size: 1.4rem !important;
   line-height: 3rem;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 935px) {

@@ -21,10 +21,10 @@
 
     <v-card-text class="pt-0">
       <div class="title font-weight-light mb-2">
-        Stock
+        Pages
       </div>
       <div class="subheading font-weight-light grey--text">
-          Products in stock
+         {{pages.length}} pages custom
       </div>
       <v-divider class="my-2"></v-divider>
       <v-icon
@@ -39,6 +39,10 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from 'axios'
+Vue.prototype.$axios = axios
+
   export default {
     data: () => ({
       labels: [
@@ -59,7 +63,11 @@
         600,
         500,
       ],
+      pages: []
     }),
+    mounted(){
+        axios.get(`https://api.pokeshop.tk/api/page`).then(response => this.pages = response.data)
+    }
   }
 </script>
 

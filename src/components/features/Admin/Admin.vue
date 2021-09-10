@@ -18,15 +18,15 @@
                   <a href="/#/orders"><orders-mini/></a>
                 </v-col>
                 <v-col md="6" class="">
-                  <a href="/#/stock"><stock-mini/></a>
+                  <a href="/#/allpages"><pages-mini/></a>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col md="6" class="">
-                  <a href="/#/allcategories"><all-categories-mini/></a>
+                  <a href="/#/users"><users-mini/></a>
                 </v-col>
                 <v-col md="6" class="">
-                  <a href="/#/users"><users-mini/></a>
+                  <a href="/#/allcategories"><all-categories-mini/></a>
                 </v-col>
               </v-row>
             </v-container>
@@ -38,14 +38,13 @@
       </v-container>
     </div>
   </div>
-    
 </template>
 
 <script>
 import AdminProductForm from './AdminProductForm';
 import AllCategoriesMini from './AllCategories/AllCategoriesMini.vue';
 import UsersMini from './Users/UsersMini.vue';
-import StockMini from './Stock/StockMini.vue';
+import PagesMini from './AllPages/PagesMini.vue';
 import AllCardsMini from './AllCards/AllCardsMini.vue';
 import OrdersMini from './Orders/OrdersMini.vue';
 import SalesMini from './Sales/SalesMini.vue';
@@ -57,7 +56,7 @@ export default {
     OrdersMini,
     AllCardsMini,
     UsersMini,
-    StockMini,
+    PagesMini,
     AllCategoriesMini
     }
 }
