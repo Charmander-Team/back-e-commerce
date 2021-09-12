@@ -1,0 +1,28 @@
+name: Prod-Deploy
+
+on:
+    push:
+        branches: [ prod ]
+
+jobs:
+    SSH-Connexion:
+        
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: Repository checkout
+              uses: actions/checkout@v2
+            
+            - name: SSH connection && prod deploy
+              uses: appleboy/ssh-action@v0.1.4
+              with:
+                  host: "pokeshop.tk"
+                  username: ${{ secrets.PROD_USER }}
+                  key: ${{ secrets.PROD_SSH_KEY }}
+                  port: ${{ secrets.PROD_PORT }}
+                  script: |
+                      cd /home/pokemon/back_e_commerce
+                      git switch prod
+                      git pull
+                      npm install
+                      npm run build
