@@ -117,11 +117,25 @@
     </div>
     <div class="form-group">
       <label>Page Color: </label>
-      <input v-model="form.page.page_color" type="text" class="form-control">
+      <!-- <input v-model="form.page.page_color" type="text" class="form-control"> -->
+      <v-color-picker
+        v-model="form.page.page_color"
+        dot-size="10"
+        mode="hexa"
+        hide-mode-switch
+        hide-inputs
+      ></v-color-picker>
     </div>
     <div class="form-group">
       <label>Text Color: </label>
-      <input v-model="form.page.text_color" type="text" class="form-control">
+      <!-- <input v-model="form.page.text_color" type="text" class="form-control"> -->
+      <v-color-picker
+        v-model="form.page.text_color"
+        dot-size="10"
+        mode="hexa"
+        hide-mode-switch
+        hide-inputs
+      ></v-color-picker>
     </div>
     <div class="form-group">
       <label>Content: </label>
@@ -141,8 +155,8 @@
 
       <select name="display" id="display" v-model="form.page.display">
           <option value="">--Please choose a value--</option>
-          <option value="0">Hidden</option>
-          <option value="1">Visible</option>
+          <option value="1">Type 1</option>
+          <option value="2">Type 2</option>
       </select>
     </div>
     <v-btn @click="submitFormPage()" large color="yellow" elevation="4">Add</v-btn>

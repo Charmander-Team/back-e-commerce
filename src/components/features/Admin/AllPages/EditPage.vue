@@ -16,17 +16,47 @@
       <label>Navbar Title: </label>
       <input v-model="form.navbar_title" type="text" class="form-control">
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Page Color: </label>
       <input v-model="form.page_color" type="text" class="form-control">
-    </div>
-    <div class="form-group">
+    </div> -->
+    <!-- <div class="form-group">
       <label>Text Color: </label>
       <input v-model="form.text_color" type="text" class="form-control">
+    </div> -->
+    <div class="d-flex">
+      <div class="m-1">
+      <label>Page Color: </label>
+      <v-color-picker
+        v-model="form.page_color"
+        dot-size="10"
+        mode="hexa"
+        swatches-max-height="250"
+      ></v-color-picker>
     </div>
+    <div class="m-1">
+      <label>Text Color: </label>
+      <v-color-picker
+        v-model="form.text_color"
+        dot-size="10"
+        mode="hexa"
+        swatches-max-height="250"
+      ></v-color-picker>
+    </div>
+    </div>
+    
     <div class="form-group">
       <label>Content: </label>
-      <input v-model="form.content" type="textarea" class="form-control">
+      <!-- <input v-model="form.content" type="textarea" class="form-control"> -->
+      <v-textarea
+          v-model="form.content"
+          background-color="white"
+          filled
+          auto-grow
+          rows="3"
+          row-height="30"
+          shaped
+        ></v-textarea>
     </div>
     <div class="form-group">
       <label>Link: </label>
@@ -40,8 +70,8 @@
             v-model="form.display"
         >
             <option value="">--Please choose a value--</option>
-            <option value="0">False</option>
-            <option value="1">True</option>
+            <option value="1">Type 1</option>
+            <option value="2">Type 2</option>
         </select>
     </div>
     <div class="form-group">
@@ -160,9 +190,7 @@ mounted(){
 </script>
 
 <style scoped>
-  form{
-    width: 400px;
-  }
+  
   .editPageWrapper{
     display: flex;
     justify-content: flex-end;
