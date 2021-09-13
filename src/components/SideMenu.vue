@@ -19,6 +19,9 @@
       <div class="nav-link text-overline" link height="45">
         <a href="https://pokeshop.tk" class="text-menu">Pokeshop.tk</a>
       </div>
+      <div class="nav-link text-overline" link height="45">
+        <button @click="logout" class="text-menu">Logout</button>
+      </div>
     </v-list>
   </v-card>
 
@@ -42,6 +45,9 @@
           <router-link :to="item.path" class="nav-link" link height="45" v-for="(item,index) in items" :key="index">
             {{item.title}}
           </router-link>
+          <div class="nav-link text-overline" link height="45">
+            <a href="https://pokeshop.tk" class="text-menu">Pokeshop.tk</a>
+          </div>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -50,6 +56,7 @@
 </template>
 
 <script>
+import App from '../App.vue'
 
 export default {
   data() {
@@ -57,7 +64,7 @@ export default {
       drawer: false,
       group: null,
       items: [
-        { title: "Dashboard", page:"Admin", path: "/" },
+        { title: "Dashboard", page:"Admin", path: "/dashboard" },
         { title: "Cards", page:"AllCards", path: "/allcards" },
         { title: "Categories", page:"AllCategories", path: "/allcategories" },
         { title: "Pages", page:"AllPages", path: "/allpages" },
@@ -72,6 +79,12 @@ export default {
       this.drawer = false
     }
   },
+  methods: {
+    logout(){
+      App.user = null
+      this.$router.push('/')
+    }
+  }
   // Appel de la methode changePage de l'EventBus
   // methods: {
   //   changePage(page){

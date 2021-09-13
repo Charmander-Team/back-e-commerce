@@ -2,6 +2,7 @@
     <v-app>
       <div class="d-flex background-app">
         <side-menu></side-menu>
+        <!-- <connexion ref="compCon"></connexion> -->
         <!-- <component :is="page"></component> -->
         <router-view></router-view>
       </div>
@@ -9,14 +10,28 @@
 </template>
 
 <script>
+import Vue from 'vue'
+import axios from 'axios'
 import SideMenu from './components/SideMenu.vue';
+import Connexion from './components/features/Admin/Connexion/Connexion.vue';
+
+Vue.prototype.$axios = axios
 
 export default {
   name: 'App',
+  user: null,
   components: {
-    SideMenu
+    SideMenu,
+    // Connexion
   },
+  mounted(){
+    if(Connexion.data){
+      this.user = Connexion.data
+      console.log(this.user)
+    }
+  }
 }
+
 </script>
 
 <style>
