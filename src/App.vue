@@ -59,10 +59,18 @@ export default {
         // }else{
         //   localStorage.removeItem('token')
         }
-    }
+    },
+    setTokenInLocalStorage(){
+        let url_string = window.location.href
+        let urlTab = url_string.split("=")
+        let token = urlTab[1]
+        console.log(token)
+        localStorage.setItem("token", token)
+      },
   },
   mounted(){
-    this.checkToken()
+    this.checkToken(),
+    this.setTokenInLocalStorage()
   }
 }
 
