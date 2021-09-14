@@ -19,6 +19,7 @@
 
           <v-text-field
           v-model="form.password"
+          :rules="pwRules"
           label="Password"
           required
           dark
@@ -51,6 +52,10 @@ Vue.prototype.$axios = axios
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
+      pwRules: [
+        v => !!v || 'Password is required',
+        v => (v && v.length >= 4) || 'Password must be up than 4 characters',
+      ],
       form: {
         email: '',
         password: ''
@@ -78,13 +83,18 @@ Vue.prototype.$axios = axios
           }
         })
         .then(res => {
-          console.log("User checked", res.data)
           // this.user = res.data
           // console.log(this.user)
           App.user = res.data
-          console.log(App.user)
-          localStorage.setItem("token", App.user.token)
-          this.$router.push('dashboard')
+          console.log("User checked", App.user)
+          if(App.user.admin === true){
+            console.log("Access authorized")
+            localStorage.setItem("token", App.user.token)
+            this.$router.push('dashboard')
+          }else{
+            console.log("Héé non !")
+          }
+          
         })
         .catch(err => {
           console.log(err)

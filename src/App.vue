@@ -35,7 +35,6 @@ export default {
         // check tout les 4 heures = 14400 secondes
         if(localStorage.getItem('token') && timestampNow - checkTimestamp[0]<= 14400){
           console.log("time",timestampNow - checkTimestamp[0])
-          console.log(localStorage.getItem('token'))
           axios.post("https://api.pokeshop.tk/api/user/check/token", {
             token: localStorage.getItem('token')
           })
@@ -46,7 +45,6 @@ export default {
               this.user = res.data
               console.log("user", this.user)
               localStorage.setItem('token', this.user.token)
-              console.log(localStorage.getItem('token'))
             }
             )
           )
