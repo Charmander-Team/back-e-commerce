@@ -46,12 +46,16 @@
             />
           </div>
           <div class="form-group">
-            <label>Description:</label>
-            <input
-              v-model="form.description"
-              type="textarea"
-              class="form-control"
-            />
+            <label>Content: </label>
+            <!-- <input v-model="form.content" type="textarea" class="form-control"> -->
+            <v-textarea
+                v-model="form.description"
+                background-color="white"
+                filled
+                auto-grow
+                rows="2"
+                row-height="30"
+              ></v-textarea>
           </div>
           <div class="form-group">
             <label>Stock:</label>

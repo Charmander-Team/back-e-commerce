@@ -63,8 +63,16 @@
       </select>
     </div>
     <div class="form-group">
-      <label>Description:</label>
-      <input v-model="form.card.description" type="textarea" class="form-control">
+      <label>Content: </label>
+      <!-- <input v-model="form.content" type="textarea" class="form-control"> -->
+      <v-textarea
+          v-model="form.card.description"
+          background-color="white"
+          filled
+          auto-grow
+          rows="2"
+          row-height="30"
+        ></v-textarea>
     </div>
     <div class="form-group">
       <label>Stock:</label>
@@ -141,7 +149,15 @@
     </div>
     <div class="form-group">
       <label>Content: </label>
-      <input v-model="form.page.content" type="textarea" class="form-control">
+      <!-- <input v-model="form.content" type="textarea" class="form-control"> -->
+      <v-textarea
+          v-model="form.page.content"
+          background-color="white"
+          filled
+          auto-grow
+          rows="3"
+          row-height="30"
+        ></v-textarea>
     </div>
     
     <div class="form-group">
