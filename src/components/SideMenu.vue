@@ -114,7 +114,7 @@ export default {
   position: sticky;
   top: 10vh;
   left: 50px;
-  border-radius: 10px;
+  border-radius: 10px !important;
   width: 300px;
 }
 .sideMenuContMobile{

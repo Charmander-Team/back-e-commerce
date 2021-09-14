@@ -170,9 +170,9 @@ export default {
     //   if (!this.form.password) {
     //     this.errors.push("Password required !");
     //   }
-      if (!this.form.admin) {
-        this.errors.push("Admin required !");
-      }
+      // if (!this.form.admin) {
+      //   this.errors.push("Admin required !");
+      // }
       return this.errors.length ? false : true;
     },
   },
