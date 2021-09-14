@@ -41,8 +41,9 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if(to.meta.requiresAuth){
         // if(App.user == null){
-            if(!localStorage.getItem("token")){
-            console.log(App.user)
+            // console.log(localStorage.getItem("token"))
+            if(localStorage.getItem("token") == null || localStorage.getItem("token") == "undefined" ){
+            console.log(App.user, localStorage)
             next({
                 name: 'connexion'
             })

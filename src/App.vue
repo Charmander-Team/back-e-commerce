@@ -45,13 +45,10 @@ export default {
               // this.$set(this, "user", res)
               this.user = res.data
               console.log("user", this.user)
-              if(res !== undefined){
-                localStorage.setItem('token', res.token)
-              }else{
-                  this.logout()
-              }
+              localStorage.setItem('token', this.user.token)
+              console.log(localStorage.getItem('token'))
             }
-            ).bind(this)
+            )
           )
           .catch(err => {
           console.log(err)
@@ -69,8 +66,8 @@ export default {
       },
   },
   mounted(){
-    this.checkToken(),
-    this.setTokenInLocalStorage()
+    this.checkToken()
+    // this.setTokenInLocalStorage()
   }
 }
 
