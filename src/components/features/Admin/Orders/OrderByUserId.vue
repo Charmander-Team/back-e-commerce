@@ -57,7 +57,11 @@
                     x{{ orderContent.quantity }}
                   </div>
                 </div>
-
+              </div>
+              <div class="amount">
+                <div v-for="order_content in getOrderContentByOrderId(order.id)" :key="order_content.id">
+                   {{order_content.quantity}}
+                </div> 
               </div>
 
               <!-- <div class="user sectionBorder">
@@ -186,7 +190,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  width: 49%;
+  width: 100%;
   height: 100%;
   padding: 20px 5px;
 }

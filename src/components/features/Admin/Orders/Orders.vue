@@ -46,9 +46,9 @@
                           max-width="150"
                           :src="product.image"
                         ></v-img>
-                        <div class="d-flex justify-space-around">
-                          <p>x{{ order_c.quantity }}</p> 
-                          <p>{{getOrderContentPrice(product.price, order_c.quantity)}}€</p> 
+                        <div class="d-flex qtyContainer">
+                          <p class="qty">x{{ order_c.quantity }}</p> 
+                          <p class="qty">{{getOrderContentPrice(product.price, order_c.quantity)}}€</p> 
                         </div>
                       </div>
                     </div>
@@ -58,9 +58,8 @@
               
               <div class="user sectionBorder">
                 <v-img
-                  width="100%"
                   height="auto"
-                  max-width="250"
+                  max-width="150"
                   :src="order.user_object.image"
                 ></v-img>
                 <div class="userInfos">
@@ -79,6 +78,7 @@
               <span> Date: {{ order.createdAt | formatDate }} </span>
               <span> Last Update: {{ order.updatedAt | formatDate }} </span>
             </div>
+            
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -282,6 +282,7 @@ export default {
   width: 49%;
   height: 100%;
   padding: 20px 5px;
+  margin: 10px;
 }
 .userInfos {
   display: flex;
@@ -304,6 +305,21 @@ export default {
 .orderDate {
   display: flex;
   flex-direction: column;
+}
+.qtyContainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 25px;
+  background-color: #dcdde1;
+  font-size: 1.2rem;
+  font-weight: 400;
+  border-radius: 20px;
+  margin-top: 5px;
+}
+.qty{
+  margin: 0 !important;
 }
 
 @media screen and (max-width: 935px) {
