@@ -13,7 +13,7 @@
 import Vue from 'vue'
 import axios from 'axios'
 import SideMenu from './components/SideMenu.vue';
-import Connexion from './components/features/Admin/Connexion/Connexion.vue';
+// import Connexion from './components/features/Admin/Connexion/Connexion.vue';
 
 Vue.prototype.$axios = axios
 
@@ -25,10 +25,6 @@ export default {
     // Connexion
   },
   mounted(){
-    if(Connexion.data){
-      this.user = Connexion.data
-      console.log(this.user)
-    }
   }
 }
 

@@ -81,8 +81,11 @@ export default {
   },
   methods: {
     logout(){
-      App.user = null
-      this.$router.push('/')
+      if(App.user != null){
+        App.user = null
+        localStorage.clear()
+        this.$router.push('/')
+      }
     }
   }
   // Appel de la methode changePage de l'EventBus
@@ -129,7 +132,7 @@ export default {
   margin: 7px;
 }
 .text-menu{
-  color: #95afc0 !important;
+  color: #227093 !important;
   font-size: 1.4rem !important;
   line-height: 3rem;
   text-decoration: none;
