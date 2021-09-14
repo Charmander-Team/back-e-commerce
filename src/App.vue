@@ -24,7 +24,45 @@ export default {
     SideMenu,
     // Connexion
   },
+  methods: {
+    checkToken () {
+        let checkTimestamp = null
+        let timestampNow = null
+        if(localStorage.getItem('token')){
+          checkTimestamp = localStorage.getItem('token').split(':')
+          timestampNow = Math.round(new Date().getTime() / 1000)
+        }
+        // check tout les 4 heures = 14400 secondes
+        if(localStorage.getItem('token') && timestampNow - checkTimestamp[0]<= 14400){
+          console.log("time",timestampNow - checkTimestamp[0])
+          console.log(localStorage.getItem('token'))
+          axios.post("https://api.pokeshop.tk/api/user/check/token", {
+            token: localStorage.getItem('token')
+          })
+          .then(
+            (res => {
+              // console.log("event user check token",res.data)
+              // this.$set(this, "user", res)
+              this.user = res.data
+              console.log("user", this.user)
+              if(res !== undefined){
+                localStorage.setItem('token', res.token)
+              }else{
+                  this.logout()
+              }
+            }
+            ).bind(this)
+          )
+          .catch(err => {
+          console.log(err)
+        })        
+        // }else{
+        //   localStorage.removeItem('token')
+        }
+    }
+  },
   mounted(){
+    this.checkToken()
   }
 }
 

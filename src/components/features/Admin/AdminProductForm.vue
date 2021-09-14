@@ -121,6 +121,7 @@
       <v-color-picker
         v-model="form.page.page_color"
         dot-size="10"
+        canvas-height="90"
         mode="hexa"
         hide-mode-switch
         hide-inputs
@@ -132,6 +133,7 @@
       <v-color-picker
         v-model="form.page.text_color"
         dot-size="10"
+        canvas-height="90"
         mode="hexa"
         hide-mode-switch
         hide-inputs

@@ -20,7 +20,7 @@
         <a href="https://pokeshop.tk" class="text-menu">Pokeshop.tk</a>
       </div>
       <div class="nav-link text-overline" link height="45">
-        <button @click="logout" class="text-menu">Logout</button>
+        <button @click="logout" class="text-menu">LOGOUT</button>
       </div>
     </v-list>
   </v-card>
@@ -45,8 +45,11 @@
           <router-link :to="item.path" class="nav-link" link height="45" v-for="(item,index) in items" :key="index">
             {{item.title}}
           </router-link>
-          <div class="nav-link text-overline" link height="45">
+          <div class="nav-link" link height="45">
             <a href="https://pokeshop.tk" class="text-menu">Pokeshop.tk</a>
+          </div>
+          <div class="nav-link" link height="45">
+            <button @click="logout" class="text-menu">LOGOUT</button>
           </div>
         </v-list-item-group>
       </v-list>
@@ -81,7 +84,7 @@ export default {
   },
   methods: {
     logout(){
-      if(App.user != null){
+      if(App.user != null || localStorage.getItem('token') !== ''){
         App.user = null
         localStorage.clear()
         this.$router.push('/')
