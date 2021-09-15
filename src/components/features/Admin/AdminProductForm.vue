@@ -41,10 +41,10 @@
           <option value="3">Energies</option>
       </select>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Reference:</label>
       <input v-model="form.card.ref" type="text" class="form-control">
-    </div>
+    </div> -->
     <div class="form-group d-flex flex-column">
       <label>Energy Type:</label>
       <!-- <input v-model="form.condition" type="text" class="form-control"> -->
@@ -205,7 +205,7 @@ export default {
           img: '',
           nom: '',
           category_id: '',
-          ref: '',
+          // ref: '',
           type: '',
           description: '',
           stock: '',
@@ -240,7 +240,7 @@ export default {
           image: this.form.card.img,
           name: this.form.card.nom,
           category_id: this.form.card.category_id,
-          ref: this.form.card.ref,
+          // ref: this.form.card.ref,
           energy_type: this.form.card.type,
           description: this.form.card.description,
           stock: this.form.card.stock,
@@ -319,7 +319,7 @@ export default {
         img: '',
         nom: '',
         category_id: '',
-        ref: '',
+        // ref: '',
         type: '',
         description: '',
         stock: '',
@@ -352,9 +352,9 @@ export default {
       if(!this.form.card.category_id){
         this.errors.push('Category Id required !');
       }
-      if(!this.form.card.ref){
-        this.errors.push('Reference required !');
-      }
+      // if(!this.form.card.ref){
+      //   this.errors.push('Reference required !');
+      // }
       if(!this.form.card.type){
         this.errors.push('Type required !');
       }

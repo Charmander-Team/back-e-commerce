@@ -1,16 +1,18 @@
 <template>
   <div class="ordersWrapper">
+    <v-icon id="backArrow" color="white" large @click="backToAllUsers()"
+      >mdi-arrow-left-bold</v-icon
+    >
     <div class="ordersContainer">
     <!-- {{orders}} -->
       <h1>User {{$route.params.id }} Orders</h1>
-      <!-- ALL PANNEL -->
       <v-expansion-panels focusable popout>
         <v-expansion-panel
           v-for="order in orders"
           :key="order.id"
           class="order"
         >
-          <v-expansion-panel-header class="d-flex justify-space-around">
+          <v-expansion-panel-header class="d-flex justify-space-around" :class="order.status">
             <p class="text-h6 mr-5 mb-0">Order {{ order.id }}</p>
             <p class="text-h6 mr-5 mb-0">{{ order.status }}</p>
             <div v-if="order.paid" class="d-flex justify-start align-center">
@@ -47,9 +49,16 @@
             </div>
 
             <v-divider></v-divider>
-            <div class="orderDate">
-              <span> Date: {{ order.createdAt | formatDate }} </span>
-              <span> Last Update: {{ order.updatedAt | formatDate }} </span>
+            <div class="bottomOrderContainer">
+              <div class="orderDate">
+                <span> Date: {{ order.createdAt | formatDate }} </span>
+                <span> Last Update: {{ order.updatedAt | formatDate }} </span>
+              </div>
+              <router-link :to="'/orders/edit/id='+order.id">                        
+                <v-btn small dark color="deep-purple">
+                    Edit status
+                </v-btn>      
+              </router-link>
             </div>
           </v-expansion-panel-content>
         </v-expansion-panel>
@@ -116,7 +125,10 @@ export default {
       }
       console.log("tmp", tmp)
       return tmp
-    }
+    },
+    backToAllUsers() {
+      this.$router.go(-1);
+    },
   }
 };
 </script>
@@ -177,6 +189,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
 
 @media screen and (max-width: 935px) {
   .ordersContainer {

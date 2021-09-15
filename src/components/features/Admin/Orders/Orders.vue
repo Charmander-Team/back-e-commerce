@@ -12,11 +12,11 @@
       <!-- ALL PANNEL -->
       <v-expansion-panels v-if="this.selectedState === null || this.selectedState === 'All' " focusable popout>
         <v-expansion-panel
-          v-for="order in orders"
+          v-for="(order) in orders"
           :key="order.id"
           class="order"
         >
-          <v-expansion-panel-header class="d-flex justify-space-around">
+          <v-expansion-panel-header class="d-flex justify-space-around" :class="order.status">
             <p class="text-h6 mr-5 mb-0">Order {{ order.id }}</p>
             <p class="text-h6 mr-5 mb-0">{{ order.status }}</p>
             <div v-if="order.paid" class="d-flex justify-start align-center">
@@ -74,9 +74,21 @@
             </div>
 
             <v-divider></v-divider>
-            <div class="orderDate">
-              <span> Date: {{ order.createdAt | formatDate }} </span>
-              <span> Last Update: {{ order.updatedAt | formatDate }} </span>
+            <div class="bottomOrderContainer">
+              <div class="orderDate">
+                <span> Date: {{ order.createdAt | formatDate }} </span>
+                <span> Last Update: {{ order.updatedAt | formatDate }} </span>
+              </div>
+              <div>
+                <router-link :to="'/orders/edit/id='+order.id">                        
+                  <v-btn small dark color="deep-purple">
+                      Edit status
+                  </v-btn>
+                </router-link>
+                <!-- <v-btn class="mx-2" small dark color="error" @click="deleteOrderById(order.id, index)">
+                  Delete
+                </v-btn> -->
+              </div>
             </div>
             
           </v-expansion-panel-content>
@@ -201,10 +213,24 @@
             </div>
 
             <v-divider></v-divider>
-            <div class="orderDate">
-              <span> Date: {{ order.createdAt | formatDate }} </span>
-              <span> Last Update: {{ order.updatedAt | formatDate }} </span>
+            <div class="bottomOrderContainer">
+              <div class="orderDate">
+                <span> Date: {{ order.createdAt | formatDate }} </span>
+                <span> Last Update: {{ order.updatedAt | formatDate }} </span>
+              </div>
+              <div>
+                <router-link :to="'/allorders/edit/id='+order.id">                        
+                <v-btn small dark color="deep-purple">
+                    Edit status
+                </v-btn>
+                
+                </router-link>
+                <!-- <v-btn class="mx-2" small dark color="error" @click="deleteOrderById(order.id, index)">
+                  Delete
+                </v-btn> -->
+              </div>
             </div>
+            
           </v-expansion-panel-content>
         </div>
 
@@ -244,7 +270,15 @@ export default {
   methods: {
     getOrderContentPrice(price, qty){
       return price * qty
-    }
+    },
+    deleteOrderById(id, index){
+      axios
+      .delete(`https://api.pokeshop.tk/api/order/${id}`)
+      .then(response => {
+          this.orders.splice(index, 1).push(response.data)
+      })
+      console.log(id, "deleted")
+    },
   }
 };
 </script>
@@ -320,6 +354,26 @@ export default {
 }
 .qty{
   margin: 0 !important;
+}
+.bottomOrderContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Annulée{
+  background-color: #fab1a0;
+}
+.Validée{
+  background-color: #74b9ff;
+}
+.En-préparation{
+  background-color: #fdcb6e;
+}
+.Expédiée{
+  background-color: #7bed9f;
+}
+.Livrée{
+  background-color: #2ed573;
 }
 
 @media screen and (max-width: 935px) {

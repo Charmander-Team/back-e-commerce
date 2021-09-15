@@ -33,10 +33,10 @@
               <option value="3">Energies</option>
             </select>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label>Reference:</label>
             <input v-model="form.ref" type="text" class="form-control" />
-          </div>
+          </div> -->
           <div class="form-group">
             <label>Energy Type:</label>
             <input
@@ -118,7 +118,7 @@ export default {
         image: "",
         name: "",
         category_id: "",
-        ref: "",
+        // ref: "",
         energy_type: "",
         description: "",
         stock: "",
@@ -146,7 +146,7 @@ export default {
               image: this.form.image,
               name: this.form.name,
               category_id: this.form.category_id,
-              ref: this.form.ref,
+              // ref: this.form.ref,
               energy_type: this.form.energy_type,
               description: this.form.description,
               stock: this.form.stock,
@@ -191,7 +191,7 @@ export default {
         image: "",
         nom: "",
         category_id: "",
-        ref: "",
+        // ref: "",
         energy_type: "",
         description: "",
         stock: "",
@@ -210,9 +210,9 @@ export default {
       if (!this.form.category_id) {
         this.errors.push("Category Id required !");
       }
-      if (!this.form.ref) {
-        this.errors.push("Reference required !");
-      }
+      // if (!this.form.ref) {
+      //   this.errors.push("Reference required !");
+      // }
       if (!this.form.energy_type) {
         this.errors.push("Type required !");
       }

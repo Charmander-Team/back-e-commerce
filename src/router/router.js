@@ -7,6 +7,7 @@ import AllCategoriesVue from '../components/features/Admin/AllCategories/AllCate
 import SalesVue from '../components/features/Admin/Sales/Sales.vue'
 import OrdersVue from '../components/features/Admin/Orders/Orders.vue'
 import OrderByUserIdVue from '../components/features/Admin/Orders/OrderByUserId.vue'
+import editOrderVue from '../components/features/Admin/Orders/editOrder.vue'
 import UsersVue from '../components/features/Admin/Users/Users.vue'
 import EditUserVue from '../components/features/Admin/Users/EditUser.vue'
 import EditCardVue from '../components/features/Admin/AllCards/EditCard.vue'
@@ -29,6 +30,7 @@ const routes = [
     { path: '/allpages/edit/id=:id', name: 'editpage', meta: { requiresAuth: true }, component: EditPageVue },
     { path: '/sales', name: 'sales', meta: { requiresAuth: true }, component: SalesVue },
     { path: '/orders', name: 'orders', meta: { requiresAuth: true }, component: OrdersVue },
+    { path: '/orders/edit/id=:id', name: 'editOrder', meta: { requiresAuth: true }, component: editOrderVue },
     { path: '/ordersbyuserid/user_id=:id', name: 'ordersbyuser', meta: { requiresAuth: true }, component: OrderByUserIdVue },
     { path: '/users', name: 'users', meta: { requiresAuth: true }, component: UsersVue },
     { path: '/users/edit/id=:id', name: 'edituser', meta: { requiresAuth: true }, component: EditUserVue },
