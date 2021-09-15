@@ -29,6 +29,7 @@ export default {
       let checkTimestamp = null
       let timestampNow = null
       if(localStorage.getItem('token')){
+        console.log(localStorage.getItem('token'))
         checkTimestamp = localStorage.getItem('token').split(':')
         timestampNow = Math.round(new Date().getTime() / 1000)
       }
@@ -53,9 +54,16 @@ export default {
         console.log(decodeURIComponent(url_string))
         let decodedURL = decodeURIComponent(url_string)
         let urlTab = decodedURL.split("=")
-        let token = urlTab[1]
-        console.log(token)
-        localStorage.setItem("token", token)
+        let tokenURL = urlTab[1]
+        console.log(tokenURL)
+        if(tokenURL !== undefined && tokenURL !== "undefined"){
+          console.log(localStorage)
+          if(!localStorage.getItem('token')){
+            this.user = tokenURL
+            console.log(this.user)
+            localStorage.setItem('token', this.user)
+          }
+        }
       },
   },
   mounted(){
