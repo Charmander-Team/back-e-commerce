@@ -30,20 +30,6 @@
           <v-expansion-panel-content>
             <div class="singleOrderContainer">
               <div class="sectionBorder orderContent">
-                <!-- <div v-for="order_c in orders_content" :key="order_c.id">
-                  <div v-if="order.id == order_c.order_id">
-                    <div v-for="product in cards" :key="product.id">
-                      <div v-if="product.id == order_c.product_id">
-                        <v-img
-                          height="auto"
-                          max-width="150"
-                          :src="product.image"
-                        ></v-img>
-                        x{{ order_c.quantity }}
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
 
                 <div v-for="orderContent in getOrderContentByOrderId(order.id)" :key="orderContent.id">
                     <!-- {{orderContent}} -->
@@ -58,28 +44,6 @@
                   </div>
                 </div>
               </div>
-              <div class="amount">
-                <div v-for="order_content in getOrderContentByOrderId(order.id)" :key="order_content.id">
-                   {{order_content.quantity}}
-                </div> 
-              </div>
-
-              <!-- <div class="user sectionBorder">
-                <v-img
-                  width="100%"
-                  height="auto"
-                  max-width="250"
-                  :src="order.user_object.image"
-                ></v-img>
-                <div class="userInfos">
-                  <p>
-                    {{ order.user_object.lastname }}
-                    {{ order.user_object.firstname }}
-                  </p>
-                  <p>{{ order.user_object.mail }}</p>
-                  <p>User Id: {{ order.user_id }}</p>
-                </div>
-              </div> -->
             </div>
 
             <v-divider></v-divider>
@@ -105,9 +69,7 @@ export default {
     return {
       orders: [],
       orders_content: [],
-      orderContentByOrderId: [],
       cards: [],
-      users: []
     };
   },
   mounted() {
@@ -130,13 +92,6 @@ export default {
         this.cards = response.data
         console.log("cards", this.cards)
         });
-
-    axios
-    .get(`https://api.pokeshop.tk/api/user/`)
-    .then(response => {
-        this.users = response.data
-        console.log("users", this.users)
-    })
 
   },
   methods: {

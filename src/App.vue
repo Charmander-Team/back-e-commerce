@@ -26,34 +26,27 @@ export default {
   },
   methods: {
     checkToken () {
-        let checkTimestamp = null
-        let timestampNow = null
-        if(localStorage.getItem('token')){
-          checkTimestamp = localStorage.getItem('token').split(':')
-          timestampNow = Math.round(new Date().getTime() / 1000)
-        }
-        // check tout les 4 heures = 14400 secondes
-        if(localStorage.getItem('token') && timestampNow - checkTimestamp[0]<= 14400){
-          console.log("time",timestampNow - checkTimestamp[0])
-          axios.post("https://api.pokeshop.tk/api/user/check/token", {
-            token: localStorage.getItem('token')
-          })
-          .then(
-            (res => {
-              // console.log("event user check token",res.data)
-              // this.$set(this, "user", res)
-              this.user = res.data
-              console.log("user", this.user)
-              localStorage.setItem('token', this.user.token)
-            }
-            )
-          )
-          .catch(err => {
-          console.log(err)
-        })        
-        // }else{
-        //   localStorage.removeItem('token')
-        }
+      let checkTimestamp = null
+      let timestampNow = null
+      if(localStorage.getItem('token')){
+        checkTimestamp = localStorage.getItem('token').split(':')
+        timestampNow = Math.round(new Date().getTime() / 1000)
+      }
+      // check tout les 4 heures = 14400 secondes
+      if(localStorage.getItem('token') && timestampNow - checkTimestamp[0]<= 14400){
+        console.log("time",timestampNow - checkTimestamp[0])
+        axios.post("https://api.pokeshop.tk/api/user/check/token", {
+          token: localStorage.getItem('token')
+        })
+        .then(res => {
+            this.user = res.data
+            console.log("user", this.user)
+            localStorage.setItem('token', this.user.token)
+        })
+        .catch(err => {
+        console.log(err)
+        })
+      }
     },
     setTokenInLocalStorage(){
         let url_string = window.location.href

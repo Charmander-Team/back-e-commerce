@@ -64,13 +64,6 @@ Vue.prototype.$axios = axios
     }),
 
     methods: {
-      // setTokenInLocalStorage(){
-      //   let url_string = window.location.href
-      //   let urlTab = url_string.split("=")
-      //   let token = urlTab[1]
-      //   console.log(token)
-      //   localStorage.setItem("token", token)
-      // },
       async validate () {
         if(this.$refs.form.validate()){
           axios.post("https://api.pokeshop.tk/api/user/check", {
@@ -83,8 +76,6 @@ Vue.prototype.$axios = axios
           }
         })
         .then(res => {
-          // this.user = res.data
-          // console.log(this.user)
           App.user = res.data
           console.log("User checked", App.user)
           if(App.user.admin === true){
@@ -94,7 +85,6 @@ Vue.prototype.$axios = axios
           }else{
             console.log("Héé non !")
           }
-          
         })
         .catch(err => {
           console.log(err)
