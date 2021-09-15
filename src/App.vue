@@ -49,8 +49,7 @@ export default {
       }
     },
     setTokenInLocalStorage(){
-        let url_string = decodeURI(window.location.href)
-        console.log(url_string)
+        let url_string = window.location.href
         let urlTab = url_string.split("=")
         let token = urlTab[1]
         console.log(token)
