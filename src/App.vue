@@ -57,8 +57,8 @@ export default {
       },
   },
   mounted(){
-    this.checkToken()
     this.setTokenInLocalStorage()
+    this.checkToken()
   }
 }
 

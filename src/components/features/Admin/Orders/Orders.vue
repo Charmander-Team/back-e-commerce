@@ -258,7 +258,16 @@ export default {
   mounted() {
     axios
       .get(`https://api.pokeshop.tk/api/order/`)
-      .then((response) => (this.orders = response.data));
+      .then((response) => {
+        this.orders = response.data
+        // console.log(this.orders)
+        // for(let order in this.orders){
+        //   if(order.status == "En cours"){
+        //     order.status = "En-cours"
+        //     console.log(order.status)
+        //   }
+        // }
+        });
     axios
       .get(`https://api.pokeshop.tk/api/order_content/`)
       .then((response) => (this.orders_content = response.data));
