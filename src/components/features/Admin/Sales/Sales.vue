@@ -1,7 +1,6 @@
 <template>
   <div class="salesWrapper">
     <div class="salesContainer">
-      {{bestBuyer}}
       <v-container class="vContainer">
         <v-row class="vRow">
           <v-col
@@ -11,7 +10,7 @@
               class="pa-2 cardSales rounded-l-xl"
               outlined
             >
-            Chiffres
+            {{getTotalSales()}}
             </v-card>
           </v-col>
           <v-col
@@ -39,15 +38,32 @@
         <v-row class="vRow">
           <v-col
             class="vCol"
-            v-for="n in 3"
-            :key="n"
           >
             <v-card
-              class="pa-2 cardSales rounded-t-xl"
+              class="pa-2 cardSales rounded-l-xl"
               outlined
-              tile
             >
             Chiffres
+            </v-card>
+          </v-col>
+                    <v-col
+            class="vCol"
+          >
+            <v-card
+              class="pa-2 cardSales"
+              outlined
+            >
+            {{this.orders_paid.length}}
+            </v-card>
+          </v-col>
+                    <v-col
+            class="vCol"
+          >
+            <v-card
+              class="pa-2 cardSales rounded-r-xl"
+              outlined
+            >
+            {{this.orders_notPaid.length}}
             </v-card>
           </v-col>
         </v-row>
@@ -63,18 +79,31 @@ import axios from 'axios'
       return {
         n: 0,
         orders: [],
+        ordersByUser: [],
+        orders_paid: [],
+        orders_notPaid: [],
         orders_content: [],
+        cards: [],
         users: [],
         bestBuyer: []
       }
     },
-    methods: {
+
+    beforeMount(){
+      setTimeout(() => {
+        this.getPaidSales()
+      }, 500);
     },
     mounted(){
       axios
       .get(`https://api.pokeshop.tk/api/order`)
       .then(response => {
         this.orders = response.data
+      })
+      axios
+      .get(`https://api.pokeshop.tk/api/product`)
+      .then(response => {
+        this.cards = response.data
       })
       axios
       .get(`https://api.pokeshop.tk/api/order_content`)
@@ -86,18 +115,45 @@ import axios from 'axios'
       .then(response => {
         this.users = response.data
       })
+      setTimeout(() => {
+        for(let user of this.users){
+          axios
+          .get(`https://api.pokeshop.tk/api/order/user/${user.id}`)
+          .then(response => {
+            this.ordersByUser.push(response.data.concat(user.firstname))
+          })
+        }
+      },500)
+      
+    },
+    methods: {
+      getTotalSales(){
+        let amount = 0;
+        for(let order_content of this.orders_content){
+          const product_id = order_content.product_id
+          const qty = order_content.quantity
+          for(let card of this.cards){
+            if(card.id == product_id){
+              const product_price = card.price
+              let total_products_price = product_price * qty
+              amount += total_products_price
+            }
+          }
+        }
+        return amount
+      },
+      getUserWithMaxCommand(){
 
-      // setTimeout(() => {
-      //   for(let user of this.users){
-      //     axios
-      //     .get(`https://api.pokeshop.tk/api/order/user/${user.id}`)
-      //     .then(response => {
-      //       console.log(response.data)
-      //       this.bestBuyer.push(response.data)
-      //     })
-      //   }
-      // },500)
-
+      },
+      getPaidSales(){
+        this.orders.forEach(order => {
+          if (order.paid == false) {
+            this.orders_notPaid.push(order)
+          }else if(order.paid == true){
+            this.orders_paid.push(order)
+          }
+        });
+      }
     },
   }
 </script>
