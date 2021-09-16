@@ -7,61 +7,96 @@
             class="vCol"
           >
             <v-card
-              class="pa-2 cardSales rounded-l-xl"
+              class="cardSales rounded-l-xl d-flex flex-column justify-center align-start"
               outlined
             >
-            <!-- Chiffre d'affaires  -->
-            {{getTotalSales()}}
+              <!-- Chiffre d'affaires  -->
+              <p class="cardSubTitle">
+                Total Turnover:
+              </p>
+              <p class="cardTitle">
+                {{getTotalSales()}}€
+              </p>
             </v-card>
           </v-col>
           <v-col
             class="vCol"
           >
             <v-card
-              class="pa-2 cardSales rounded-r-xl"
+              class="cardSales rounded-r-xl d-flex flex-column justify-center align-end"
               outlined
             >
             <!-- Meilleur acheteur (le plus de commandes) -->
-            {{this.bestBuyer[0][maxLengthOrdersByUser - 1]}}
-            {{this.bestBuyer[0][maxLengthOrdersByUser - 2]}}
-            {{maxLengthOrdersByUser - 1}}
+              <p class="cardSubTitle">
+                Best Customer:
+              </p>
+              <p class="cardTitle">
+                {{this.bestBuyer[0][maxLengthOrdersByUser - 1]}}
+                {{this.bestBuyer[0][maxLengthOrdersByUser - 2]}}
+              </p>
+              <p class="cardSubTitle">
+                With:
+              </p>
+              <p class="cardTitle">
+                {{maxLengthOrdersByUser - 1}} Orders 
+              </p>
+            
             </v-card>
           </v-col>
         </v-row>
         <v-row class="vRow">
-          <v-col class="vCol">
+          <v-col
+          class="vCol">
             <v-card
-              class="pa-2 cardSales rounded-xl"
+              class="cardSales rounded-xl d-flex justify-space-between"
               outlined
-              tile
             >
             <!-- Carte la plus chère  -->
-            {{bestCard[0].name}}
-            {{bestCard[0].price}}
+              <div class="cardSubTitle d-flex flex-column">
+                <p>Most Expansive Card:</p>
+                <p class="cardTitle">{{bestCard[0].name}}</p>
+              </div>
+              <v-img
+                :src="bestCard[0].image"
+                max-width="200"
+                max-height="100%"
+                ></v-img>
+                <div class="d-flex align-end">
+                  <p class="cardSubTitle">Price: </p>
+                  <p class="cardTitle">
+                    {{bestCard[0].price}}€
+                  </p>
+                </div>
             </v-card>
           </v-col>
         </v-row>
         <v-row class="vRow">
-                    <v-col
+          <v-col
             class="vCol"
           >
             <v-card
-              class="pa-2 cardSales rounded-l-xl"
+              class="cardSales rounded-l-xl d-flex justify-start align-center"
               outlined
             >
             <!-- Total commandes payées -->
-            {{this.orders_paid.length}}
+            <div class="cardSubTitle">
+              <p>Total paid orders:</p>
+              <p class="cardTitle">{{this.orders_paid.length}}</p>
+            </div>
             </v-card>
           </v-col>
-                    <v-col
+          <v-col
             class="vCol"
           >
             <v-card
-              class="pa-2 cardSales rounded-r-xl"
+              class="cardSales rounded-r-xl d-flex justify-end align-center"
               outlined
             >
             <!-- Total commandes non payées -->
-            {{this.orders_notPaid.length}}
+            <div class="cardSubTitle d-flex flex-column align-end">
+              <p>Total not paid orders:</p>
+              <p class="cardTitle">{{this.orders_notPaid.length}}</p>
+            </div>
             </v-card>
           </v-col>
         </v-row>
@@ -75,7 +110,6 @@ import axios from 'axios'
   export default {
     data(){
       return {
-        n: 0,
         lengthArray: [],
         priceArray: [],
         maxCardPrice: 0,
@@ -118,6 +152,7 @@ import axios from 'axios'
       .then(response => {
         this.users = response.data
       })
+
       setTimeout(() => {
         for(let user of this.users){
           axios
@@ -129,8 +164,8 @@ import axios from 'axios'
         for (let card of this.cards) {
           this.priceArray.push(card.price)
         }
-        console.log(this.priceArray);
       },500)
+
       setTimeout(() => {
         this.ordersByUser.forEach(order => {
           this.lengthArray.push(order.length)
@@ -139,7 +174,7 @@ import axios from 'axios'
         this.maxLengthOrdersByUser = Math.max(...this.lengthArray);
         this.bestBuyer = this.ordersByUser.filter(element => element.length === this.maxLengthOrdersByUser)
         this.bestCard = this.cards.filter(element => element.price === this.maxCardPrice);
-        console.log(this.bestCard);
+        console.log(this.bestBuyer);
       }, 800);
     },
     methods: {
@@ -157,9 +192,6 @@ import axios from 'axios'
           }
         }
         return amount
-      },
-      getUserWithMaxCommand(){
-
       },
       getPaidSales(){
         this.orders.forEach(order => {
@@ -206,5 +238,15 @@ import axios from 'axios'
 .cardSales{
   height: 100%;
   background-color: #e1b12c !important;
+  font-size: 2rem;
+  padding: 20px !important;
+}
+.cardSubTitle{
+  font-weight: 300;
+}
+.cardTitle{
+  font-weight: 900;
+  line-height: 0;
+  margin-bottom: 40px !important;
 }
 </style>
