@@ -17,7 +17,8 @@
         </div> 
       </router-link>
       <div class="nav-link text-overline" link height="45">
-        <a href="https://pokeshop.tk" class="text-menu">Pokeshop.tk</a>
+        <!-- <a href="https://pokeshop.tk" class="text-menu">Pokeshop.tk</a> -->
+        <button class="text-menu" @click="redirectToFront()">Pokeshop.tk</button>
       </div>
       <div class="nav-link text-overline" link height="45">
         <button @click="logout" class="text-menu">LOGOUT</button>
@@ -89,6 +90,15 @@ export default {
         localStorage.clear()
         this.$router.push('/')
       }
+    },
+    redirectToFront(){
+      if(App.user){
+        console.log(App.user)
+        window.location = `https://pokeshop.tk/#/?t=${App.user.token}`
+      }else{
+        window.location = `https://pokeshop.tk/#/`
+      }
+      
     }
   }
   // Appel de la methode changePage de l'EventBus
