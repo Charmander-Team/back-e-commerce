@@ -58,11 +58,22 @@ export default {
         console.log(tokenURL)
         if(tokenURL !== undefined && tokenURL !== "undefined"){
           console.log(localStorage)
-          if(!localStorage.getItem('token')){
-            this.user = tokenURL
-            console.log(this.user)
-            localStorage.setItem('token', this.user)
-          }
+          axios.post("https://api.pokeshop.tk/api/user/check/token", {
+            token: tokenURL
+          })
+          .then(res => {
+              this.user = res.data
+              console.log("user", this.user)
+              localStorage.setItem('token', this.user.token)
+          })
+          .catch(err => {
+          console.log(err)
+          })
+          // if(!localStorage.getItem('token')){
+          //   this.user = tokenURL
+          //   console.log(this.user)
+          //   localStorage.setItem('token', this.user)
+          // }
         }
       },
   },
