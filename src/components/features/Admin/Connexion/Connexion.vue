@@ -18,6 +18,7 @@
           ></v-text-field>
 
           <v-text-field
+          type="password"
           v-model="form.password"
           :rules="pwRules"
           label="Password"

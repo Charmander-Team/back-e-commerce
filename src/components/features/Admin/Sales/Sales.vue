@@ -10,6 +10,7 @@
               class="pa-2 cardSales rounded-l-xl"
               outlined
             >
+            <!-- Chiffre d'affaires  -->
             {{getTotalSales()}}
             </v-card>
           </v-col>
@@ -20,7 +21,10 @@
               class="pa-2 cardSales rounded-r-xl"
               outlined
             >
-            Chiffres
+            <!-- Meilleur acheteur (le plus de commandes) -->
+            {{this.bestBuyer[0][maxLengthOrdersByUser - 1]}}
+            {{this.bestBuyer[0][maxLengthOrdersByUser - 2]}}
+            {{maxLengthOrdersByUser - 1}}
             </v-card>
           </v-col>
         </v-row>
@@ -31,28 +35,21 @@
               outlined
               tile
             >
-            Chiffres
+            <!-- Carte la plus chère  -->
+            {{bestCard[0].name}}
+            {{bestCard[0].price}}
             </v-card>
           </v-col>
         </v-row>
         <v-row class="vRow">
-          <v-col
+                    <v-col
             class="vCol"
           >
             <v-card
               class="pa-2 cardSales rounded-l-xl"
               outlined
             >
-            Chiffres
-            </v-card>
-          </v-col>
-                    <v-col
-            class="vCol"
-          >
-            <v-card
-              class="pa-2 cardSales"
-              outlined
-            >
+            <!-- Total commandes payées -->
             {{this.orders_paid.length}}
             </v-card>
           </v-col>
@@ -63,6 +60,7 @@
               class="pa-2 cardSales rounded-r-xl"
               outlined
             >
+            <!-- Total commandes non payées -->
             {{this.orders_notPaid.length}}
             </v-card>
           </v-col>
@@ -78,6 +76,10 @@ import axios from 'axios'
     data(){
       return {
         n: 0,
+        lengthArray: [],
+        priceArray: [],
+        maxCardPrice: 0,
+        maxLengthOrdersByUser: 0,
         orders: [],
         ordersByUser: [],
         orders_paid: [],
@@ -85,7 +87,8 @@ import axios from 'axios'
         orders_content: [],
         cards: [],
         users: [],
-        bestBuyer: []
+        bestBuyer: [],
+        bestCard: []
       }
     },
 
@@ -120,11 +123,24 @@ import axios from 'axios'
           axios
           .get(`https://api.pokeshop.tk/api/order/user/${user.id}`)
           .then(response => {
-            this.ordersByUser.push(response.data.concat(user.firstname))
+            this.ordersByUser.push(response.data.concat(user.firstname, user.lastname))
           })
         }
+        for (let card of this.cards) {
+          this.priceArray.push(card.price)
+        }
+        console.log(this.priceArray);
       },500)
-      
+      setTimeout(() => {
+        this.ordersByUser.forEach(order => {
+          this.lengthArray.push(order.length)
+        });
+        this.maxCardPrice = Math.max(...this.priceArray)
+        this.maxLengthOrdersByUser = Math.max(...this.lengthArray);
+        this.bestBuyer = this.ordersByUser.filter(element => element.length === this.maxLengthOrdersByUser)
+        this.bestCard = this.cards.filter(element => element.price === this.maxCardPrice);
+        console.log(this.bestCard);
+      }, 800);
     },
     methods: {
       getTotalSales(){
