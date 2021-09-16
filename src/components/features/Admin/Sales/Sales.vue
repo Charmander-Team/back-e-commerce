@@ -6,9 +6,11 @@
           <v-col
             class="vCol"
           >
+          <v-hover v-slot="{ hover }">
             <v-card
-              class="cardSales rounded-l-xl d-flex flex-column justify-center align-start"
+              class="cardSales totalTurnover rounded-l-xl d-flex flex-column justify-center align-start"
               outlined
+              :elevation="hover ? 12 : 2"
             >
               <!-- Chiffre d'affaires  -->
               <p class="cardSubTitle">
@@ -18,21 +20,25 @@
                 {{getTotalSales()}}€
               </p>
             </v-card>
+          </v-hover>
+            
           </v-col>
           <v-col
             class="vCol"
           >
+          <v-hover v-slot="{ hover }">
             <v-card
-              class="cardSales rounded-r-xl d-flex flex-column justify-center align-end"
+              class="cardSales bCustomer rounded-r-xl d-flex flex-column justify-center align-end"
               outlined
+              :elevation="hover ? 12 : 2"
             >
             <!-- Meilleur acheteur (le plus de commandes) -->
               <p class="cardSubTitle">
                 Best Customer:
               </p>
               <p class="cardTitle">
-                {{this.bestBuyer[0][maxLengthOrdersByUser - 1]}}
-                {{this.bestBuyer[0][maxLengthOrdersByUser - 2]}}
+                {{bestBuyer[0][maxLengthOrdersByUser - 1]}}
+                {{bestBuyer[0][maxLengthOrdersByUser - 2]}}
               </p>
               <p class="cardSubTitle">
                 With:
@@ -42,14 +48,18 @@
               </p>
             
             </v-card>
+          </v-hover>
+            
           </v-col>
         </v-row>
         <v-row class="vRow">
           <v-col
           class="vCol">
+          <v-hover v-slot="{ hover }">
             <v-card
-              class="cardSales rounded-xl d-flex justify-space-between"
+              class="cardSales exCardSection rounded-xl d-flex justify-space-between"
               outlined
+              :elevation="hover ? 12 : 2"
             >
             <!-- Carte la plus chère  -->
               <div class="cardSubTitle d-flex flex-column">
@@ -68,36 +78,46 @@
                   </p>
                 </div>
             </v-card>
+          </v-hover>
+            
           </v-col>
         </v-row>
         <v-row class="vRow">
           <v-col
             class="vCol"
           >
+          <v-hover v-slot="{ hover }">
             <v-card
-              class="cardSales rounded-l-xl d-flex justify-start align-center"
+              class="cardSales goodNews rounded-l-xl d-flex justify-start align-center"
               outlined
+              :elevation="hover ? 12 : 2"
             >
             <!-- Total commandes payées -->
             <div class="cardSubTitle">
               <p>Total paid orders:</p>
-              <p class="cardTitle">{{this.orders_paid.length}}</p>
+              <p class="cardTitle">{{orders_paid.length}}</p>
             </div>
             </v-card>
+          </v-hover>
+            
           </v-col>
           <v-col
             class="vCol"
           >
-            <v-card
-              class="cardSales rounded-r-xl d-flex justify-end align-center"
+            <v-hover v-slot="{ hover }">
+              <v-card
+              class="cardSales badNews rounded-r-xl d-flex justify-end align-center"
               outlined
+              :elevation="hover ? 12 : 2"
             >
             <!-- Total commandes non payées -->
             <div class="cardSubTitle d-flex flex-column align-end">
               <p>Total not paid orders:</p>
-              <p class="cardTitle">{{this.orders_notPaid.length}}</p>
+              <p class="cardTitle">{{orders_notPaid.length}}</p>
             </div>
             </v-card>
+            </v-hover>
+            
           </v-col>
         </v-row>
       </v-container>
@@ -174,8 +194,7 @@ import axios from 'axios'
         this.maxLengthOrdersByUser = Math.max(...this.lengthArray);
         this.bestBuyer = this.ordersByUser.filter(element => element.length === this.maxLengthOrdersByUser)
         this.bestCard = this.cards.filter(element => element.price === this.maxCardPrice);
-        console.log(this.bestBuyer);
-      }, 800);
+      }, 700);
     },
     methods: {
       getTotalSales(){
@@ -237,7 +256,7 @@ import axios from 'axios'
 }
 .cardSales{
   height: 100%;
-  background-color: #e1b12c !important;
+  /* background-color: #e1b12c !important; */
   font-size: 2rem;
   padding: 20px !important;
 }
@@ -248,5 +267,20 @@ import axios from 'axios'
   font-weight: 900;
   line-height: 0;
   margin-bottom: 40px !important;
+}
+.badNews{
+  background-color: #e55039 !important;
+}
+.goodNews{
+  background-color: #6ab04c !important;
+}
+.exCardSection{
+  background-color: #e1b12c !important;
+}
+.totalTurnover{
+  background-color: #60a3bc !important;
+}
+.bCustomer{
+  background-color: #a55eea !important;
 }
 </style>
