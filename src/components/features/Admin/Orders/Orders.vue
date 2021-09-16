@@ -3,14 +3,8 @@
     <div class="ordersContainer">
     <!-- {{orders}} -->
       <h1>All Orders</h1>
-      <v-select
-        v-model="selectedState"
-        item-text="state"
-        :items="['Paid', 'Not Paid', 'All']"
-      >
-      </v-select>
       <!-- ALL PANNEL -->
-      <v-expansion-panels v-if="this.selectedState === null || this.selectedState === 'All' " focusable popout>
+      <v-expansion-panels focusable popout>
         <v-expansion-panel
           v-for="(order) in orders"
           :key="order.id"
@@ -90,150 +84,7 @@
                 </v-btn> -->
               </div>
             </div>
-            
           </v-expansion-panel-content>
-        </v-expansion-panel>
-      </v-expansion-panels>
-      <!-- PAID PANNEL -->
-      <v-expansion-panels v-if="this.selectedState === 'Paid'" focusable popout>
-        <v-expansion-panel
-          v-for="order in orders"
-          :key="order.id"
-          class="order"
-        ><div v-if="order.paid">
-          <v-expansion-panel-header class="d-flex justify-space-around">
-            <p class="text-h6 mr-5 mb-0">Order {{ order.id }}</p>
-            <p class="text-h6 mr-5 mb-0">{{ order.status }}</p>
-            <div v-if="order.paid" class="d-flex justify-start align-center">
-              <p class="text-subtitle-1 mr-5 mb-0">Paid</p>
-              <v-icon color="teal">
-                mdi-check
-              </v-icon>
-            </div>
-          </v-expansion-panel-header>          
-          <v-expansion-panel-content>
-            <div class="singleOrderContainer">
-              <div class="sectionBorder orderContent">
-                <div v-for="order_c in orders_content" :key="order_c.id">
-                  <div v-if="order.id == order_c.order_id">
-                    <div v-for="product in cards" :key="product.id">
-                      <div v-if="product.id == order_c.product_id">
-                        <v-img
-                          height="auto"
-                          max-width="150"
-                          :src="product.image"
-                        ></v-img>
-                        x{{ order_c.quantity }}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="user sectionBorder">
-                <v-img
-                  width="100%"
-                  height="auto"
-                  max-width="250"
-                  :src="order.user_object.image"
-                ></v-img>
-                <div class="userInfos">
-                  <p>
-                    {{ order.user_object.lastname }}
-                    {{ order.user_object.firstname }}
-                  </p>
-                  <p>{{ order.user_object.mail }}</p>
-                  <p>User Id: {{ order.user_id }}</p>
-                </div>
-              </div>
-            </div>
-
-            <v-divider></v-divider>
-            <div class="orderDate">
-              <span> Date: {{ order.createdAt | formatDate }} </span>
-              <span> Last Update: {{ order.updatedAt | formatDate }} </span>
-            </div>
-          </v-expansion-panel-content>
-        </div>
-
-        </v-expansion-panel>
-      </v-expansion-panels>
-      <!-- NOT PAID PANNEL -->
-            <v-expansion-panels v-if="this.selectedState === 'Not Paid'" focusable popout>
-        <v-expansion-panel
-          v-for="order in orders"
-          :key="order.id"
-          class="order"
-        ><div v-if="!order.paid">
-          <v-expansion-panel-header class="d-flex justify-space-around">
-            <p class="text-h6 mr-5 mb-0">Order {{ order.id }}</p>
-            <p class="text-h6 mr-5 mb-0">{{ order.status }}</p>
-            <div v-if="order.paid === false" class="d-flex justify-start align-center">
-              <p class="text-subtitle-1 mr-5 mb-0">Not Paid</p>
-              <v-icon color="error">
-                mdi-alert-circle
-              </v-icon>
-            </div>
-          </v-expansion-panel-header>          
-          <v-expansion-panel-content>
-            <div class="singleOrderContainer">
-              <div class="sectionBorder orderContent">
-                <div v-for="order_c in orders_content" :key="order_c.id">
-                  <div v-if="order.id == order_c.order_id">
-                    <div v-for="product in cards" :key="product.id">
-                      <div v-if="product.id == order_c.product_id">
-                        <v-img
-                          height="auto"
-                          max-width="150"
-                          :src="product.image"
-                        ></v-img>
-                        x{{ order_c.quantity }}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="user sectionBorder">
-                <v-img
-                  width="100%"
-                  height="auto"
-                  max-width="250"
-                  :src="order.user_object.image"
-                ></v-img>
-                <div class="userInfos">
-                  <p>
-                    {{ order.user_object.lastname }}
-                    {{ order.user_object.firstname }}
-                  </p>
-                  <p>{{ order.user_object.mail }}</p>
-                  <p>User Id: {{ order.user_id }}</p>
-                </div>
-              </div>
-            </div>
-
-            <v-divider></v-divider>
-            <div class="bottomOrderContainer">
-              <div class="orderDate">
-                <span> Date: {{ order.createdAt | formatDate }} </span>
-                <span> Last Update: {{ order.updatedAt | formatDate }} </span>
-              </div>
-              <div>
-                <router-link :to="'/allorders/edit/id='+order.id">                        
-                <v-btn small dark color="deep-purple">
-                    Edit status
-                </v-btn>
-                
-                </router-link>
-                <!-- <v-btn class="mx-2" small dark color="error" @click="deleteOrderById(order.id, index)">
-                  Delete
-                </v-btn> -->
-              </div>
-            </div>
-            
-          </v-expansion-panel-content>
-        </div>
-
         </v-expansion-panel>
       </v-expansion-panels>
     </div>
