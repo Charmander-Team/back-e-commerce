@@ -37,14 +37,13 @@
                 Best Customer:
               </p>
               <p class="cardTitle">
-                {{bestBuyer[0][maxLengthOrdersByUser - 1]}}
-                {{bestBuyer[0][maxLengthOrdersByUser - 2]}}
+                {{getBestUserInfos()}}
               </p>
               <p class="cardSubTitle">
                 With:
               </p>
               <p class="cardTitle">
-                {{maxLengthOrdersByUser - 1}} Orders 
+                {{maxLengthOrdersByUser - 2}} Orders 
               </p>
             
             </v-card>
@@ -220,6 +219,9 @@ import axios from 'axios'
             this.orders_paid.push(order)
           }
         });
+      },
+      getBestUserInfos(){
+        return this.bestBuyer[0][this.maxLengthOrdersByUser - 1] +' '+ this.bestBuyer[0][this.maxLengthOrdersByUser - 2]
       }
     },
   }
